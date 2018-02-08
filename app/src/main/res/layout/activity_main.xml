@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/small_picture"
+                        android:src="@mipmap/kfu" />
+
+                    <ImageView
+                        style="@style/small_picture"
+                        android:src="@mipmap/kai" />
+
+                    <ImageView
+                        style="@style/small_picture"
+                        android:src="@mipmap/kgmu" />
+
+                    <ImageView
+                        style="@style/small_picture"
+                        android:src="@drawable/kgeu_logo" />
+
+                    <ImageView
+                        style="@style/small_picture"
+                        android:src="@mipmap/kfu" />
+
+                    <ImageView
+                        style="@style/small_picture"
+                        android:src="@mipmap/kfu" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <LinearLayout style="@style/linear_introduction">
+
+                <info.hoang8f.widget.FButton
+                    android:id="@+id/btn_introduction"
+                    style="@style/btn_introduction"
+                    android:text="@string/list_page"
+                    fbutton:buttonColor="@color/shadow2"
+                    fbutton:cornerRadius="16dp"
+                    fbutton:shadowColor="@color/siteBack"
+                    fbutton:shadowHeight="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/linear_introduction">
+
+                <TextView style="@style/default_text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        </ScrollView>
+
+</LinearLayout>
