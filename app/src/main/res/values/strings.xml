@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">ВУЗы Казани</string>
 
+    <!-- Main Activivty !-->
+
+    <string name="app_name">ВУЗы Казани</string>
     <string name="introduction">Очень часто потенциальные абитуриенты, закончив среднее учебное заведение,
  									не знают в какое учебное заведение пойти дальше или не уверены в правильности
  									своего выбора. Так происходит отчасти от того, что, несмотря на всю развитость
@@ -9,9 +11,27 @@
  									  вас учебных заведениях приходится тратить кучу драгоценного времени. И этот сайт был создан для того, чтобы вы не копались на многочисленных
         сайтах учебных заведений с целью поиска нужной для вас информации.</string>
     <string name="list_page">Перечень Вузов</string>
-    <string name="title_activity_list_of__vyzi_activity">List_of_Vyzi_activity</string>
-    <string name="title_activity_add_comment_activity">Add_comment_activity</string>
+
+    <!-- List of Vyzi Activivty !-->
+
+    <string name="title_activity_list_of__vyzi_activity">Список ВУЗов</string>
+
+    <!-- University Main Activity !-->
+
     <string name="title_activity_university_main">UniversityMainActivity</string>
+    <string name="btn_directions">Направления подготовки</string>
+
+    <!-- Add University activivty !-->
+
+    <string name="title_activity_add_comment_activity">Добавить новый ВУЗ</string>
+    <string name="add_uni">Здесь вы можете оставить своё пожелание о добавлении определенного ВУЗа в наше приложение</string>
+    <string name="hint_name">Название ВУЗа</string>
+    <string name="hint_location">Месторасположение (город)</string>
+    <string name="hint_comment">Комментарий (по желанию)</string>
+    <string name="btn_send">Отправить</string>
+
+
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

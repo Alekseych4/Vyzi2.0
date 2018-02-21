@@ -23,7 +23,7 @@
     <include layout="@layout/content_list_of__vyzi_activity" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -31,6 +31,7 @@
         android:background="@color/siteBack"
         android:tint="@color/white"
         app:srcCompat="@android:drawable/ic_input_add"
-        app:fabSize="auto"/>
+        app:fabSize="auto"
+        android:onClick="openAddComment"/>
 
 </android.support.design.widget.CoordinatorLayout>

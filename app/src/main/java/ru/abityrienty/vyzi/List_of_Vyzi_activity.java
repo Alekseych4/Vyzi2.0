@@ -9,14 +9,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.List;
+
 
 public class List_of_Vyzi_activity extends AppCompatActivity {
 
@@ -24,7 +28,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     SimpleCursorAdapter simpleCursorAdapter;
     Cursor cursor;
-    ListView list_of_vyzi;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,30 +38,26 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAddComment(view);
-            }
-        });
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
-        list_of_vyzi = (ListView) findViewById(R.id.list_of_vyzi);
-        list_of_vyzi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), UniversityMainActivity.class);
-                intent.putExtra("id", id);
-                startActivity(intent);
-            }
-        });
-            //copy paste
+
+
         myDBHelper = new MyDBHelper(getApplicationContext());
         // создаем базу данных
         myDBHelper.create_db();
+        listView = (ListView) findViewById(R.id.list_of_vyzi);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), UniversityMainActivity.class);
+                intent.putExtra("_id", id);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public void onResume() {
@@ -69,11 +69,13 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         //String [] columns = {"university_name"};
         cursor =  sqLiteDatabase.rawQuery("select * from "+TablesNames.UNIVERSITIES, null);
         // определяем, какие столбцы из курсора будут выводиться в ListView
-        String[] headers = new String[] {MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
+        String[] headers = new String[] {UniMainInfoConsts.IMG_SRC, MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
         // создаем адаптер, передаем в него курсор
-        simpleCursorAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
-                cursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
-        list_of_vyzi.setAdapter(simpleCursorAdapter);
+        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.layout_for_list,
+                cursor, headers, new int[]{R.id.imageView, R.id.main_text, R.id.sub_text}, 0);
+
+        listView.setAdapter(simpleCursorAdapter);
+
 
         /*String[] headers = new String[] {MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
         cursor = sqLiteDatabase.query(TablesNames.UNIVERSITIES, headers, null, null,null,null,null);

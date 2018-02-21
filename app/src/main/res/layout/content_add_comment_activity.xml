@@ -6,8 +6,49 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ru.abityrienty.vyzi.Add_comment_activity"
-    tools:showIn="@layout/activity_add_comment_activity">
+    tools:showIn="@layout/activity_add_comment_activity"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
 
-
+<LinearLayout
+    android:layout_width="344dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="0dp"
+    tools:layout_editor_absoluteX="8dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_uni"
+            android:textSize="20sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_location"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_comment"/>
+        <info.hoang8f.widget.FButton
+            style="@style/btn_introduction"
+            android:layout_height="60dp"
+            android:text="@string/btn_send"
+            fbutton:buttonColor="@color/shadow2"
+            fbutton:cornerRadius="16dp"
+            fbutton:shadowColor="@color/siteBack"
+            fbutton:shadowHeight="5dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
