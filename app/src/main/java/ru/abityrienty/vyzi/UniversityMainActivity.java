@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +19,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 public class UniversityMainActivity extends AppCompatActivity {
 
@@ -31,6 +36,10 @@ public class UniversityMainActivity extends AppCompatActivity {
     TextView textView;
     String id;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    Button button;
+    ImageView im;
+    Uri uri;
+    File file;
 
 
 
@@ -56,6 +65,7 @@ public class UniversityMainActivity extends AppCompatActivity {
         list_id = bundle.getLong("_id");
         id = Long.toString(list_id);
         textView = (TextView) findViewById(R.id.info);
+
     }
 
     @Override
@@ -84,6 +94,14 @@ public class UniversityMainActivity extends AppCompatActivity {
 
 
         textView.setText(cursor.getString(column_info));
+
+        button = (Button) findViewById(R.id.directions_btn);
+
+        /*im = (ImageView) findViewById(R.id.test);
+        String nameOfPhoto = cursor.getString(column_name);
+        uri = Uri.parse("android.resource://ru.abityrienty.vyzi/"+nameOfPhoto);
+        im.setImageURI(uri);
+
         /*String [] data = {UniBriefInfoTable_Columns.UNI_NAME, UniBriefInfoTable_Columns.CREATE_DATE};
         simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.content_university_main, cursor,
                 new String[]{UniBriefInfoTable_Columns.CREATE_DATE}, new int[]{R.id.info},0 );
@@ -94,5 +112,16 @@ public class UniversityMainActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
         Drawable drawable = new BitmapDrawable(Resources.getSystem(), bitmap);
         return drawable;
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        // Закрываем подключение и курсор
+        sqLiteDatabase.close();
+        cursor.close();
+    }
+    public void openDirections (View view) {
+        Intent intent = new Intent(this, Directions_list.class);
+        startActivity(intent);
     }
 }

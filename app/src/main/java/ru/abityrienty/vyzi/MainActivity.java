@@ -4,10 +4,24 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ContentFrameLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class MainActivity extends AppCompatActivity {
+    ImageButton imageButtonKfu;
+    ImageButton imageButtonKai;
+    ImageButton imageButtonKgmu;
+    ImageButton imageButtonKgeu;
+    ImageButton imageButtonKnity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +35,36 @@ public class MainActivity extends AppCompatActivity {
                 openListOfVyzi(btn);
             }
         });
+
+        imageButtonKfu = (ImageButton) findViewById(R.id.btn_1);
+        imageButtonKai = (ImageButton) findViewById(R.id.btn_2);
+        imageButtonKnity = (ImageButton) findViewById(R.id.btn_3);
+        imageButtonKgmu = (ImageButton) findViewById(R.id.btn_4);
+        imageButtonKgeu = (ImageButton) findViewById(R.id.btn_5);
+
+
+
     }
 
     public void openListOfVyzi (View view) {
         Intent intent = new Intent(this, List_of_Vyzi_activity.class);
+        startActivity(intent);
+    }
+
+    public void openUniversityMainActivity(View view){
+        Intent intent = new Intent(getApplicationContext(), UniversityMainActivity.class);
+        String id = view.getResources().getResourceEntryName(view.getId());
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(id);
+        int start = 0;
+        long put =0;
+        while (matcher.find(start)) {
+            String value = id.substring(matcher.start(), matcher.end());
+            put = Long.parseLong(value);
+            start = matcher.end();
+        }
+        Log.d("kh", String.valueOf(put));
+        intent.putExtra("_id", put);
         startActivity(intent);
     }
 

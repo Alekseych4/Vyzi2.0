@@ -70,7 +70,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
         return SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READWRITE);
     }
 
-
+    public boolean check_exist_db(){
+        File file = new File(DB_PATH);
+        return file.exists();
+    }
 
 
 

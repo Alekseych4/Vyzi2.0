@@ -1,5 +1,6 @@
 package ru.abityrienty.vyzi;
 
+import android.app.LoaderManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,6 +30,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
     SimpleCursorAdapter simpleCursorAdapter;
     Cursor cursor;
     ListView listView;
+    ListOfVyziAdapter listOfVyziAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,18 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
 
         myDBHelper = new MyDBHelper(getApplicationContext());
         // создаем базу данных
+
+          if(!myDBHelper.check_exist_db()){
         myDBHelper.create_db();
+        }
+
         listView = (ListView) findViewById(R.id.list_of_vyzi);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), UniversityMainActivity.class);
                 intent.putExtra("_id", id);
+
                 startActivity(intent);
             }
         });
@@ -69,12 +76,13 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         //String [] columns = {"university_name"};
         cursor =  sqLiteDatabase.rawQuery("select * from "+TablesNames.UNIVERSITIES, null);
         // определяем, какие столбцы из курсора будут выводиться в ListView
+        cursor.moveToFirst();
         String[] headers = new String[] {UniMainInfoConsts.IMG_SRC, MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
         // создаем адаптер, передаем в него курсор
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.layout_for_list,
+        listOfVyziAdapter = new ListOfVyziAdapter(this, R.layout.layout_for_list,
                 cursor, headers, new int[]{R.id.imageView, R.id.main_text, R.id.sub_text}, 0);
 
-        listView.setAdapter(simpleCursorAdapter);
+        listView.setAdapter(listOfVyziAdapter);
 
 
         /*String[] headers = new String[] {MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
