@@ -36,14 +36,14 @@ public class ListOfVyziAdapter extends SimpleCursorAdapter {
         l = layout;
     }
 
-    @Override
+   /* @Override
     public int getCount() {
         return getCursor().getCount();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
+        /*View view = convertView;
         if (view == null) {
             view = lInflater.inflate(l, parent, false);
         }
@@ -55,8 +55,9 @@ public class ListOfVyziAdapter extends SimpleCursorAdapter {
             ((TextView) view.findViewById(R.id.sub_text)).setText(getCursor().getString(getCursor().getColumnIndex(columns[2])));
 
 
-        return view;
+        return null;
     }
+
 
     @Override
     public long getItemId(int position) {
@@ -66,18 +67,13 @@ public class ListOfVyziAdapter extends SimpleCursorAdapter {
     @Override
     public Object getItem(int position) {
         return getCursor().getString(position);
-    }
+    }*/
 
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-
-    }
-
-    /*@Override
     public void setViewImage(ImageView v, String value) {
         super.setViewImage(v, value);
-
-    }*/
+        v.setImageDrawable(imageForList(getCursor()));
+    }
     public Drawable imageForList(Cursor cur){
 
         byte [] blob = cur.getBlob(cur.getColumnIndex(columns[0]));

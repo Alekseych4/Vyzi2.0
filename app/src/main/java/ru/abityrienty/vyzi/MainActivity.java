@@ -17,11 +17,7 @@ import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton imageButtonKfu;
-    ImageButton imageButtonKai;
-    ImageButton imageButtonKgmu;
-    ImageButton imageButtonKgeu;
-    ImageButton imageButtonKnity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 openListOfVyzi(btn);
             }
         });
-
-        imageButtonKfu = (ImageButton) findViewById(R.id.btn_1);
-        imageButtonKai = (ImageButton) findViewById(R.id.btn_2);
-        imageButtonKnity = (ImageButton) findViewById(R.id.btn_3);
-        imageButtonKgmu = (ImageButton) findViewById(R.id.btn_4);
-        imageButtonKgeu = (ImageButton) findViewById(R.id.btn_5);
-
-
 
     }
 
@@ -63,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             put = Long.parseLong(value);
             start = matcher.end();
         }
-        Log.d("kh", String.valueOf(put));
         intent.putExtra("_id", put);
         startActivity(intent);
     }

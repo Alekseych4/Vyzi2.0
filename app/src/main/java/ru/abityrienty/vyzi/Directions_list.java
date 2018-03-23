@@ -19,9 +19,7 @@ public class Directions_list extends AppCompatActivity {
 
     SQLiteDatabase sqLiteDatabase;
     MyDBHelper myDBHelper;
-    SimpleCursorAdapter simpleCursorAdapter;
     Cursor cursor;
-    Context context;
     ListOfVyziAdapter adapter;
     ListView listView;
 
@@ -29,29 +27,28 @@ public class Directions_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions_list);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView = (ListView) findViewById(R.id.directions_list);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar();
+
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(TablesNames.UNIVERSITY_BRIEF_INFO, null,
                 null, null, null, null,null);
-        Log.d("Check","Before adapter");
+
         cursor.moveToFirst();
-        int index = cursor.getColumnIndex("img_src");
+
         adapter = new ListOfVyziAdapter(getApplicationContext(), R.layout.layout_for_list,
                 cursor, new String[] {"img_src", "university_name", "www"},
                 new int [] {R.id.imageView, R.id.main_text, R.id.sub_text},0);
-        Log.d("Check","After initializing adapter");
-        listView.setAdapter(adapter);
-        Log.d("Check","After setting adapter");
-        context = getApplicationContext();
-        String name = context.getFilesDir().getPath();
 
-        //int resId = cursor.getString(index);
-        //imageView.setImageResource(resId);
+        listView.setAdapter(adapter);
+
+
+
     }
 
 }
