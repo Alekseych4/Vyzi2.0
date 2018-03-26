@@ -1,18 +1,14 @@
 package ru.abityrienty.vyzi;
 
-import android.content.Context;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class Directions_list extends AppCompatActivity {
@@ -22,11 +18,19 @@ public class Directions_list extends AppCompatActivity {
     Cursor cursor;
     ListOfVyziAdapter adapter;
     ListView listView;
+    String tableName;
+    Intent receiveIntent, sendIntent;
+    Bundle bundle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_directions_list);
+
+        receiveIntent = getIntent();
+        bundle = receiveIntent.getExtras();
+        tableName = bundle.getString("tb_name");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,19 +40,36 @@ public class Directions_list extends AppCompatActivity {
 
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
-        cursor = sqLiteDatabase.query(TablesNames.UNIVERSITY_BRIEF_INFO, null,
+        cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.ID,DirectionsTableColumns.NAME,
+                        DirectionsTableColumns.IMG_SRC, "director"},
                 null, null, null, null,null);
 
         cursor.moveToFirst();
 
         adapter = new ListOfVyziAdapter(getApplicationContext(), R.layout.layout_for_list,
-                cursor, new String[] {"img_src", "university_name", "www"},
-                new int [] {R.id.imageView, R.id.main_text, R.id.sub_text},0);
+                cursor, new String[] {DirectionsTableColumns.IMG_SRC, DirectionsTableColumns.NAME},
+                new int [] {R.id.imageView, R.id.main_text},0);
 
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                sendIntent = new Intent(getApplicationContext(), InstitutePage.class);
+                sendIntent.putExtra("_id", id);
+                startActivity(sendIntent);
+            }
+        });
 
 
+
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        // Закрываем подключение и курсор
+        sqLiteDatabase.close();
+        cursor.close();
     }
 
 }

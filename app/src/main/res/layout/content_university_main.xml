@@ -15,7 +15,6 @@
         android:orientation="vertical">
         <info.hoang8f.widget.FButton
             android:id="@+id/directions_btn"
-            android:onClick="openDirections"
             style="@style/btn_introduction"
             android:text="@string/btn_directions"
             fbutton:buttonColor="@color/shadow2"

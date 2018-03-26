@@ -17,6 +17,11 @@ import android.widget.ImageView;
 
 public class ListOfVyziAdapter extends SimpleCursorAdapter {
 
+    /**
+     * It's important to place column where you store images on the first place
+     * of the @from array
+     */
+
 
     Context ctx;
     // String [] columns = {0="img_src",1="for main_text", 2="for sub_text"}

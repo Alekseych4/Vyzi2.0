@@ -52,6 +52,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.abityrienty.vyzi.UniversityMainActivity" />
         </activity>
+        <activity
+            android:name=".InstitutePage"
+            android:label="@string/title_activity_institute_page"
+            android:parentActivityName=".Directions_list"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.abityrienty.vyzi.Directions_list" />
+        </activity>
     </application>
 
 </manifest>

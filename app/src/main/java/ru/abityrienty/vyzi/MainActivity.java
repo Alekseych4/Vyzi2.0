@@ -17,12 +17,19 @@ import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    MyDBHelper myDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //Создаём базу данных на устройстве на основе имеющейся
+        myDBHelper = new MyDBHelper(getApplicationContext());
+        if(!myDBHelper.check_exist_db()){
+            myDBHelper.create_db();
+        }
 
         final Button btn = (Button) findViewById(R.id.btn_introduction);
         btn.setOnClickListener(new View.OnClickListener() {

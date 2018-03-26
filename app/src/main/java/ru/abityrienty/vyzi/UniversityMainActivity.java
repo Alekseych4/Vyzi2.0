@@ -32,14 +32,13 @@ public class UniversityMainActivity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     MyDBHelper myDBHelper;
     Cursor cursor;
-    SimpleCursorAdapter simpleCursorAdapter;
     TextView textView;
     String id;
     CollapsingToolbarLayout collapsingToolbarLayout;
     Button button;
-    ImageView im;
-    Uri uri;
-    File file;
+    Intent intent_send;
+    int column_next_table;
+
 
 
 
@@ -73,11 +72,11 @@ public class UniversityMainActivity extends AppCompatActivity {
         super.onResume();
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
-        //cursor = sqLiteDatabase.rawQuery("SELECT*FROM "+TablesNames.UNIVERSITY_BRIEF_INFO+" WHERE _id="+list_id,null);
+
 
         cursor = sqLiteDatabase.query(TablesNames.UNIVERSITIES,
                 new String[] {UniMainInfoConsts.UNI_FULL_NAME, UniMainInfoConsts.UNI_BRIEF_NAME,
-                UniMainInfoConsts.IMG_SRC, UniMainInfoConsts.INFO_ABOUT},
+                UniMainInfoConsts.IMG_SRC, UniMainInfoConsts.INFO_ABOUT, UniMainInfoConsts.NEXT_TABLE},
                 "_id="+list_id,null,null,null,null,null);
         cursor.moveToFirst();
         //Getting the columns' indexes
@@ -85,6 +84,7 @@ public class UniversityMainActivity extends AppCompatActivity {
         int column_brief_name = cursor.getColumnIndex(UniMainInfoConsts.UNI_BRIEF_NAME);
         int column_img = cursor.getColumnIndex(UniMainInfoConsts.IMG_SRC);
         int column_info = cursor.getColumnIndex(UniMainInfoConsts.INFO_ABOUT);
+        column_next_table = cursor.getColumnIndex(UniMainInfoConsts.NEXT_TABLE);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         byte [] blob_img = cursor.getBlob(column_img);
@@ -96,16 +96,16 @@ public class UniversityMainActivity extends AppCompatActivity {
         textView.setText(cursor.getString(column_info));
 
         button = (Button) findViewById(R.id.directions_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent_send = new Intent(getApplicationContext(), Directions_list.class);
+                intent_send.putExtra("tb_name", cursor.getString(column_next_table));
+                startActivity(intent_send);
+            }
+        });
 
-        /*im = (ImageView) findViewById(R.id.test);
-        String nameOfPhoto = cursor.getString(column_name);
-        uri = Uri.parse("android.resource://ru.abityrienty.vyzi/"+nameOfPhoto);
-        im.setImageURI(uri);
 
-        /*String [] data = {UniBriefInfoTable_Columns.UNI_NAME, UniBriefInfoTable_Columns.CREATE_DATE};
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.content_university_main, cursor,
-                new String[]{UniBriefInfoTable_Columns.CREATE_DATE}, new int[]{R.id.info},0 );
-        simpleCursorAdapter.bindView(textView,getApplicationContext(),cursor);*/
     }
 
     public  static Drawable decodeImg (byte [] img){
@@ -119,9 +119,5 @@ public class UniversityMainActivity extends AppCompatActivity {
         // Закрываем подключение и курсор
         sqLiteDatabase.close();
         cursor.close();
-    }
-    public void openDirections (View view) {
-        Intent intent = new Intent(this, Directions_list.class);
-        startActivity(intent);
     }
 }
