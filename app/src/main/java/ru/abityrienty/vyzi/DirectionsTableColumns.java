@@ -8,4 +8,5 @@ public class DirectionsTableColumns {
     public static final String NAME = "institute";
     public static final String IMG_SRC = "img_source";
     public static final String ID = "_id";
+    public static final String INFO = "info_about";
 }

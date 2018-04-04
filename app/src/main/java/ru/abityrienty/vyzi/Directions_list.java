@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,6 +22,8 @@ public class Directions_list extends AppCompatActivity {
     String tableName;
     Intent receiveIntent, sendIntent;
     Bundle bundle;
+    String [] tableIndex = {"KFU", "KAI", "KNITY", "KGMU", "KGEU"};
+    long id;
 
 
     @Override
@@ -32,12 +35,25 @@ public class Directions_list extends AppCompatActivity {
         bundle = receiveIntent.getExtras();
         tableName = bundle.getString("tb_name");
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         listView = (ListView) findViewById(R.id.directions_list);
 
-        getSupportActionBar();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        for (int i=0; i<tableIndex.length; i++){
+            if (tableIndex[i].equals(tableName)){
+              id = i+1;
+            }
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backArrowInt = new Intent(getApplicationContext(), UniversityMainActivity.class);
+                backArrowInt.putExtra("_id", id);
+                startActivity(backArrowInt);
+            }
+        });
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.ID,DirectionsTableColumns.NAME,
@@ -57,6 +73,7 @@ public class Directions_list extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 sendIntent = new Intent(getApplicationContext(), InstitutePage.class);
                 sendIntent.putExtra("_id", id);
+                sendIntent.putExtra("tb_name", tableName);
                 startActivity(sendIntent);
             }
         });
