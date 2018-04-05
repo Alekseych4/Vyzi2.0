@@ -140,13 +140,7 @@ public class InstitutePage extends AppCompatActivity {
         Drawable drawable = new BitmapDrawable(Resources.getSystem(), bitmap);
         return drawable;
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sqLiteDatabase.close();
-        cursor.close();
-        myDBHelper.close();
-    }
+
     @Override
     public void onDestroy(){
         super.onDestroy();

@@ -115,14 +115,6 @@ public class UniversityMainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        sqLiteDatabase.close();
-        cursor.close();
-        myDBHelper.close();
-    }
-
-    @Override
     public void onDestroy(){
         super.onDestroy();
         // Закрываем подключение и курсор

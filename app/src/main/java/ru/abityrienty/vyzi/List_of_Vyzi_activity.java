@@ -3,11 +3,14 @@ package ru.abityrienty.vyzi;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 
@@ -18,7 +21,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
     ListView listView;
-    ListOfVyziAdapter listOfVyziAdapter;
+    SimpleCursorAdapter simpleCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +44,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
+
 
         // открываем подключение
         myDBHelper = new MyDBHelper(getApplicationContext());
@@ -60,19 +60,10 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         cursor.moveToFirst();
         String[] headers = new String[] {UniMainInfoConsts.IMG_SRC, MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
         // создаем адаптер, передаем в него курсор
-        listOfVyziAdapter = new ListOfVyziAdapter(this, R.layout.layout_for_list,
+        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.layout_for_list,
                 cursor, headers, new int[]{R.id.imageView, R.id.main_text, R.id.sub_text}, 0);
 
-        listView.setAdapter(listOfVyziAdapter);
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sqLiteDatabase.close();
-        cursor.close();
-        myDBHelper.close();
+        listView.setAdapter(simpleCursorAdapter);
     }
 
     @Override

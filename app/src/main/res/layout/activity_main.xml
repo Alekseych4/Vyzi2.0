@@ -80,7 +80,7 @@
                         android:layout_height="60dp"
                         android:background="@null"
                         android:onClick="openUniversityMainActivity"
-                        fbutton:srcCompat="@mipmap/kgeu_logo" />
+                        fbutton:srcCompat="@mipmap/kgasu_logo" />
 
                     <ImageButton
                         android:id="@+id/btn_7"
@@ -89,7 +89,7 @@
                         android:layout_height="60dp"
                         android:background="@null"
                         android:onClick="openUniversityMainActivity"
-                        fbutton:srcCompat="@mipmap/kgeu_logo" />
+                        fbutton:srcCompat="@mipmap/kiu_logo" />
 
                     <ImageButton
                         android:id="@+id/btn_8"
@@ -98,7 +98,7 @@
                         android:layout_height="60dp"
                         android:background="@null"
                         android:onClick="openUniversityMainActivity"
-                        fbutton:srcCompat="@mipmap/kgeu_logo" />
+                        fbutton:srcCompat="@mipmap/kazgik_logo" />
 
 
                 </LinearLayout>
