@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     MyDBHelper myDBHelper;
+    Button btnP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openListOfVyzi(btn);
+            }
+        });
+        btnP = (Button) findViewById(R.id.btn_prefer);
+        btnP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getApplicationContext(), Preferences.class);
+                startActivity(intent1);
             }
         });
 

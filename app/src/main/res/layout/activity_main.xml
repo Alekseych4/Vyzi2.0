@@ -29,50 +29,49 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:onClick="openUniversityMainActivity"
                         android:id="@+id/btn_1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
                         style="@style/small_picture"
-                        android:src="@mipmap/kfu"
-                        android:background="@null" />
-
-                    <ImageButton
-                        android:onClick="openUniversityMainActivity"
-                        android:id="@+id/btn_2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        style="@style/small_picture"
-                        android:src="@mipmap/kai"
-                        android:background="@null"/>
-
-                    <ImageButton
-                        android:onClick="openUniversityMainActivity"
-                        android:id="@+id/btn_3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        style="@style/small_picture"
-                        android:src="@mipmap/logo_knitu"
-                        android:background="@null"/>
-
-                    <ImageButton
-                        android:onClick="openUniversityMainActivity"
-                    android:id="@+id/btn_4"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@null"
-                    fbutton:srcCompat="@mipmap/kgmu"
-                    style="@style/small_picture"/>
-
-                    <ImageButton
-                        android:onClick="openUniversityMainActivity"
-                        android:id="@+id/btn_5"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@null"
-                        fbutton:srcCompat="@mipmap/kgeu_logo"
-                        style="@style/small_picture"/>
+                        android:onClick="openUniversityMainActivity"
+                        android:src="@mipmap/kfu" />
 
+                    <ImageButton
+                        android:id="@+id/btn_2"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        android:src="@mipmap/kai" />
+
+                    <ImageButton
+                        android:id="@+id/btn_3"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        android:src="@mipmap/logo_knitu" />
+
+                    <ImageButton
+                        android:id="@+id/btn_4"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        fbutton:srcCompat="@mipmap/kgmu" />
+
+                    <ImageButton
+                        android:id="@+id/btn_5"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        fbutton:srcCompat="@mipmap/kgeu_logo" />
 
 
                 </LinearLayout>
@@ -89,6 +88,20 @@
                     fbutton:shadowColor="@color/siteBack"
                     fbutton:shadowHeight="5dp" />
 
+
+            </LinearLayout>
+            <LinearLayout style="@style/linear_introduction">
+
+                <info.hoang8f.widget.FButton
+                    android:id="@+id/btn_prefer"
+                    style="@style/btn_introduction"
+                    android:text="Избранное"
+                    fbutton:buttonColor="@color/shadow2"
+                    fbutton:cornerRadius="16dp"
+                    fbutton:shadowColor="@color/siteBack"
+                    fbutton:shadowHeight="5dp" />
+
+
             </LinearLayout>
 
             <LinearLayout style="@style/linear_introduction">
@@ -98,6 +111,6 @@
             </LinearLayout>
 
         </LinearLayout>
-        </ScrollView>
+    </ScrollView>
 
 </LinearLayout>

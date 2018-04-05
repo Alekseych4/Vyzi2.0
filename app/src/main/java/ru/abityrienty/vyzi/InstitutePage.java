@@ -1,9 +1,13 @@
 package ru.abityrienty.vyzi;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,6 +24,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class InstitutePage extends AppCompatActivity {
     Intent receiveIntent;
     long listId;
@@ -30,6 +36,9 @@ public class InstitutePage extends AppCompatActivity {
     Cursor cursor;
     CollapsingToolbarLayout collapsingToolbarLayout;
     TextView textView;
+    DBhelper preferHelper;
+    SQLiteDatabase databasePref;
+    FloatingActionButton star;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +56,57 @@ public class InstitutePage extends AppCompatActivity {
         listId = bundle.getLong("_id");
         tableName = bundle.getString("tb_name");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+        star = (FloatingActionButton) findViewById(R.id.fab_inst);
+        star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/"+"preferences.db";
+                File file = new File(DB_PATH);
+                if (!file.exists()){
+                    preferHelper = new DBhelper(getApplicationContext());
+                    ContentValues contentValues = new ContentValues();
+                    databasePref = preferHelper.getWritableDatabase();
+                    contentValues.put("_id", listId);
+                    contentValues.put("tableName", tableName);
+                    databasePref.insert("preferences", null, contentValues);
+                    star.setImageResource(R.drawable.ic_star_pressed_24dp);
+                    databasePref.close();
+                }   else {
+                    preferHelper = new DBhelper(getApplicationContext());
+                    databasePref = preferHelper.getWritableDatabase();
+                    Cursor cursor1 = databasePref.query("preferences",null,null,null,null,null,null);
+                    if(cursor1.moveToFirst()){
+
+                        do {
+                            int idInd = cursor1.getInt(cursor1.getColumnIndex("_id"));
+                            String tName = cursor1.getString(cursor1.getColumnIndex("tableName"));
+                            if((idInd==listId)&&(tName.equals(tableName))){
+                                databasePref.delete("preferences", "_id = "+listId+" and "+
+                                        "tableName = "+"'"+tableName+"'",null);
+                                star.setImageResource(R.drawable.ic_star_unpressed_24dp);
+                            }
+                        } while (cursor1.moveToNext());
+
+                    }   else {
+                        ContentValues cv = new ContentValues();
+                        cv.put("_id", listId);
+                        cv.put("tableName", tableName);
+                        databasePref.insert("preferences", null, cv);
+                        star.setImageResource(R.drawable.ic_star_pressed_24dp);
+                    }
+                    cursor1.close();
+                    databasePref.close();
+                }
             }
         });
+
+
+
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,5 +146,29 @@ public class InstitutePage extends AppCompatActivity {
         // Закрываем подключение и курсор
         sqLiteDatabase.close();
         cursor.close();
+    }
+
+    class DBhelper extends SQLiteOpenHelper {
+        public DBhelper(Context context) {
+            super(context, "preferences", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("create table preferences ("
+                    + "_id integer,"
+                    + "tableName text" + ");");
+            Log.d("DB NEW", "DB pref created");
+        }
+        public SQLiteDatabase open()throws SQLException {
+
+            return SQLiteDatabase.openDatabase("/data/data/ru.abityrienty.vyzi/databases/"+"preferences.db",
+                    null, SQLiteDatabase.OPEN_READWRITE);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        }
     }
 }
