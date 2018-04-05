@@ -22,8 +22,6 @@ public class Directions_list extends AppCompatActivity {
     String tableName;
     Intent receiveIntent, sendIntent;
     Bundle bundle;
-    String [] tableIndex = {"KFU", "KAI", "KNITY", "KGMU", "KGEU"};
-    long id;
 
 
     @Override
@@ -41,17 +39,10 @@ public class Directions_list extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.directions_list);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        for (int i=0; i<tableIndex.length; i++){
-            if (tableIndex[i].equals(tableName)){
-              id = i+1;
-            }
-        }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backArrowInt = new Intent(getApplicationContext(), UniversityMainActivity.class);
-                backArrowInt.putExtra("_id", id);
-                startActivity(backArrowInt);
+                onBackPressed();
             }
         });
         myDBHelper = new MyDBHelper(getApplicationContext());

@@ -59,9 +59,7 @@ public class InstitutePage extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backArrowIntent = new Intent(getApplicationContext(), Directions_list.class);
-                backArrowIntent.putExtra("tb_name", tableName);
-                startActivity(backArrowIntent);
+                onBackPressed();
             }
         });
 
