@@ -73,6 +73,33 @@
                         android:onClick="openUniversityMainActivity"
                         fbutton:srcCompat="@mipmap/kgeu_logo" />
 
+                    <ImageButton
+                        android:id="@+id/btn_6"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        fbutton:srcCompat="@mipmap/kgeu_logo" />
+
+                    <ImageButton
+                        android:id="@+id/btn_7"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        fbutton:srcCompat="@mipmap/kgeu_logo" />
+
+                    <ImageButton
+                        android:id="@+id/btn_8"
+                        style="@style/small_picture"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:onClick="openUniversityMainActivity"
+                        fbutton:srcCompat="@mipmap/kgeu_logo" />
+
 
                 </LinearLayout>
             </HorizontalScrollView>

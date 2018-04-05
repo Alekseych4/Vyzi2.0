@@ -67,6 +67,13 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sqLiteDatabase.close();
+        cursor.close();
+        myDBHelper.close();
+    }
 
     @Override
     public void onDestroy(){
@@ -74,6 +81,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         // Закрываем подключение и курсор
         sqLiteDatabase.close();
         cursor.close();
+        myDBHelper.close();
     }
 
 

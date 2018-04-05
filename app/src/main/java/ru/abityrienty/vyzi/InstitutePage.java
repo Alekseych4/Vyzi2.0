@@ -141,10 +141,18 @@ public class InstitutePage extends AppCompatActivity {
         return drawable;
     }
     @Override
+    protected void onPause() {
+        super.onPause();
+        sqLiteDatabase.close();
+        cursor.close();
+        myDBHelper.close();
+    }
+    @Override
     public void onDestroy(){
         super.onDestroy();
         // Закрываем подключение и курсор
         sqLiteDatabase.close();
+        myDBHelper.close();
         cursor.close();
     }
 
