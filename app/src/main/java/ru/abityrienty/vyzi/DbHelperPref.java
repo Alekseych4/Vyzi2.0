@@ -24,7 +24,7 @@ public class DbHelperPref extends SQLiteOpenHelper {
     }
     public SQLiteDatabase open()throws SQLException {
 
-        return SQLiteDatabase.openDatabase("/data/data/ru.abityrienty.vyzi/databases/preferences.db",
+        return SQLiteDatabase.openDatabase("/data/data/ru.abityrienty.vyzi/databases/preferences",
                 null, SQLiteDatabase.OPEN_READWRITE);
     }
 

@@ -42,13 +42,15 @@ public class InstitutePage extends AppCompatActivity {
     Cursor cursor;
     CollapsingToolbarLayout collapsingToolbarLayout;
     TextView textView;
-    DbHelperPref preferHelper;
-    SQLiteDatabase databasePref;
+    DbHelperPref preferHelper, dbForStar;
+    SQLiteDatabase databasePref, sqliteForStar;
     FloatingActionButton star;
     InputStream inputStream;
     Drawable drawable;
     int column_name;
     String img;
+    final String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/preferences";
+    File fileCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class InstitutePage extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_tool_institute);
         textView = (TextView) findViewById(R.id.institute_text);
+        star = (FloatingActionButton) findViewById(R.id.fab_inst);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -66,17 +70,33 @@ public class InstitutePage extends AppCompatActivity {
         listId = bundle.getLong("_id");
         tableName = bundle.getString("tb_name");
 
+        //Для нормальной работы звёздочки
+        fileCheck = new File(DB_PATH);
+        if (fileCheck.exists()) {
+            dbForStar = new DbHelperPref(getApplicationContext());
+            sqliteForStar = dbForStar.getReadableDatabase();
+            Cursor curForStar = sqliteForStar.query("preferences", new String[]{"tableId", "tableName"},
+                    null, null, null, null, null);
+            if(curForStar.moveToFirst()){
+                curForStar.moveToFirst();
+                do {
+                    int idInd = curForStar.getInt(curForStar.getColumnIndex("tableId"));
+                    String tName = curForStar.getString(curForStar.getColumnIndex("tableName"));
+                    if((idInd==listId)&&(tName.equals(tableName))){
+                        star.setImageResource(R.drawable.ic_star_pressed_24dp);
+                        break;
+                    }
+                }   while (curForStar.moveToNext());
+            }
+            sqliteForStar.close();
+            curForStar.close();
+        }
 
-
-
-
-        star = (FloatingActionButton) findViewById(R.id.fab_inst);
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/preferences";
-                File file = new File(DB_PATH);
-                if (!file.exists()){
+
+                if (!fileCheck.exists()){
                     Log.d("Lk", "HERE");
                     preferHelper = new DbHelperPref(getApplicationContext());
                     ContentValues contentValues = new ContentValues();
