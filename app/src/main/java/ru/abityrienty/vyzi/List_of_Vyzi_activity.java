@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -73,6 +74,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         sqLiteDatabase.close();
         cursor.close();
         myDBHelper.close();
+        Log.d("Destr", "List destr");
     }
 
 

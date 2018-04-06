@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,7 +18,7 @@ public class Directions_list extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     MyDBHelper myDBHelper;
     Cursor cursor;
-    ListOfVyziAdapter adapter;
+    SimpleCursorAdapter simpleCursorAdapter;
     ListView listView;
     String tableName;
     Intent receiveIntent, sendIntent;
@@ -48,16 +49,16 @@ public class Directions_list extends AppCompatActivity {
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.ID,DirectionsTableColumns.NAME,
-                        DirectionsTableColumns.IMG_SRC, "director"},
+                        DirectionsTableColumns.IMG_SRC},
                 null, null, null, null,null);
 
         cursor.moveToFirst();
 
-        adapter = new ListOfVyziAdapter(getApplicationContext(), R.layout.layout_for_list,
+        simpleCursorAdapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.layout_for_list,
                 cursor, new String[] {DirectionsTableColumns.IMG_SRC, DirectionsTableColumns.NAME},
                 new int [] {R.id.imageView, R.id.main_text},0);
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(simpleCursorAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -79,6 +80,7 @@ public class Directions_list extends AppCompatActivity {
         sqLiteDatabase.close();
         cursor.close();
         myDBHelper.close();
+        Log.d("DESTROY", "Directions_list has destroyed");
     }
 
 }

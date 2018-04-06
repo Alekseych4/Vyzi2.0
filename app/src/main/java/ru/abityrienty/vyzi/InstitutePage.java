@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -23,8 +24,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Time;
 
 public class InstitutePage extends AppCompatActivity {
     Intent receiveIntent;
@@ -36,9 +42,13 @@ public class InstitutePage extends AppCompatActivity {
     Cursor cursor;
     CollapsingToolbarLayout collapsingToolbarLayout;
     TextView textView;
-    DBhelper preferHelper;
+    DbHelperPref preferHelper;
     SQLiteDatabase databasePref;
     FloatingActionButton star;
+    InputStream inputStream;
+    Drawable drawable;
+    int column_name;
+    String img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,39 +74,63 @@ public class InstitutePage extends AppCompatActivity {
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/"+"preferences.db";
+                String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/preferences";
                 File file = new File(DB_PATH);
                 if (!file.exists()){
-                    preferHelper = new DBhelper(getApplicationContext());
+                    Log.d("Lk", "HERE");
+                    preferHelper = new DbHelperPref(getApplicationContext());
                     ContentValues contentValues = new ContentValues();
                     databasePref = preferHelper.getWritableDatabase();
-                    contentValues.put("_id", listId);
+
+                    contentValues.put("tableId", listId);
                     contentValues.put("tableName", tableName);
+                    contentValues.put("name", cursor.getString(column_name));
+                    contentValues.put("img_src", img);
                     databasePref.insert("preferences", null, contentValues);
+
                     star.setImageResource(R.drawable.ic_star_pressed_24dp);
+                    Toast.makeText(getApplicationContext(),"Добавлено в избранное", Toast.LENGTH_LONG).show();
                     databasePref.close();
                 }   else {
-                    preferHelper = new DBhelper(getApplicationContext());
+                    preferHelper = new DbHelperPref(getApplicationContext());
                     databasePref = preferHelper.getWritableDatabase();
-                    Cursor cursor1 = databasePref.query("preferences",null,null,null,null,null,null);
+                    Cursor cursor1 = databasePref.query("preferences", new String[] {"tableId", "tableName"},
+                            null,null,null,null,null);
                     if(cursor1.moveToFirst()){
-
+                            cursor1.moveToFirst();
+                            boolean k = true;
                         do {
-                            int idInd = cursor1.getInt(cursor1.getColumnIndex("_id"));
+                            int idInd = cursor1.getInt(cursor1.getColumnIndex("tableId"));
                             String tName = cursor1.getString(cursor1.getColumnIndex("tableName"));
                             if((idInd==listId)&&(tName.equals(tableName))){
-                                databasePref.delete("preferences", "_id = "+listId+" and "+
-                                        "tableName = "+"'"+tableName+"'",null);
+                                databasePref.delete("preferences", "tableId = "+idInd+" and "+
+                                        "tableName = "+"'"+tName+"'",null);
                                 star.setImageResource(R.drawable.ic_star_unpressed_24dp);
+                                Toast.makeText(getApplicationContext(),"Удалено из избранного", Toast.LENGTH_LONG).show();
+                                k = false;
+                                break;
                             }
                         } while (cursor1.moveToNext());
+                        if (k){
+                            ContentValues cv = new ContentValues();
+                            cv.put("tableId", listId);
+                            cv.put("tableName", tableName);
+                            cv.put("name", cursor.getString(column_name));
+                            cv.put("img_src", img);
+                            databasePref.insert("preferences", null, cv);
+                            star.setImageResource(R.drawable.ic_star_pressed_24dp);
+                            Toast.makeText(getApplicationContext(),"Добавлено в избранное", Toast.LENGTH_LONG).show();
+                        }
 
                     }   else {
                         ContentValues cv = new ContentValues();
-                        cv.put("_id", listId);
+                        cv.put("tableId", listId);
                         cv.put("tableName", tableName);
+                        cv.put("name", cursor.getString(column_name));
+                        cv.put("img_src", img);
                         databasePref.insert("preferences", null, cv);
                         star.setImageResource(R.drawable.ic_star_pressed_24dp);
+                        Toast.makeText(getApplicationContext(),"Добавлено в избранное", Toast.LENGTH_LONG).show();
                     }
                     cursor1.close();
                     databasePref.close();
@@ -115,30 +149,27 @@ public class InstitutePage extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.IMG_SRC,
         DirectionsTableColumns.NAME, DirectionsTableColumns.INFO},"_id="+listId,null,null,null,null);
 
         cursor.moveToFirst();
-        int column_name = cursor.getColumnIndex(DirectionsTableColumns.NAME);
+        column_name = cursor.getColumnIndex(DirectionsTableColumns.NAME);
         int column_img = cursor.getColumnIndex(DirectionsTableColumns.IMG_SRC);
         int column_info = cursor.getColumnIndex(DirectionsTableColumns.INFO);
 
-        byte [] blob_img = cursor.getBlob(column_img);
-        collapsingToolbarLayout.setBackground(decodeImg(blob_img));
+        img = cursor.getString(column_img);
+        Uri uri = Uri.parse(img);
+        try{
+            inputStream = getContentResolver().openInputStream(uri);
+            drawable = Drawable.createFromStream(inputStream, uri.toString());
+        }  catch (FileNotFoundException e) {
+            drawable = Drawable.createFromPath("android.resource://ru.abityrienty.vyzi/drawable/img_default.jpeg");
+        }
+        collapsingToolbarLayout.setBackground(drawable);
         setTitle(cursor.getString(column_name));
         textView.setText(cursor.getString(column_info));
-    }
-    public  static Drawable decodeImg (byte [] img){
-        Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
-        Drawable drawable = new BitmapDrawable(Resources.getSystem(), bitmap);
-        return drawable;
     }
 
     @Override
@@ -148,29 +179,13 @@ public class InstitutePage extends AppCompatActivity {
         sqLiteDatabase.close();
         myDBHelper.close();
         cursor.close();
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.d("DESTROY", "InstPage has destroyed");
     }
 
-    class DBhelper extends SQLiteOpenHelper {
-        public DBhelper(Context context) {
-            super(context, "preferences", null, 1);
-        }
 
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL("create table preferences ("
-                    + "_id integer,"
-                    + "tableName text" + ");");
-            Log.d("DB NEW", "DB pref created");
-        }
-        public SQLiteDatabase open()throws SQLException {
-
-            return SQLiteDatabase.openDatabase("/data/data/ru.abityrienty.vyzi/databases/"+"preferences.db",
-                    null, SQLiteDatabase.OPEN_READWRITE);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        }
-    }
 }

@@ -30,7 +30,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, VERSION);
         this.myContext = context;
         DB_PATH ="/data/data/ru.abityrienty.vyzi/databases/"+DB_NAME;
-        Log.d("DB", DB_PATH);
     }
 
     public void create_db (){
