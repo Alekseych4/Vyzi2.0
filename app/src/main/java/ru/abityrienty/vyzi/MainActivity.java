@@ -3,15 +3,9 @@ package ru.abityrienty.vyzi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ContentFrameLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
         intent.putExtra("_id", put);
         startActivity(intent);
+        finish();
     }
 
     @Override

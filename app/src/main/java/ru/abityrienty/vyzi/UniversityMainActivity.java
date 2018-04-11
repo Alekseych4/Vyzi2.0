@@ -113,6 +113,7 @@ public class UniversityMainActivity extends AppCompatActivity {
                 intent_send = new Intent(getApplicationContext(), Directions_list.class);
                 intent_send.putExtra("tb_name", cursor.getString(column_next_table));
                 startActivity(intent_send);
+                finish();
             }
         });
 
