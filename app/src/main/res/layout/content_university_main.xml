@@ -13,7 +13,183 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/director"
+                android:layout_margin="24dp"/>
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Иванов Иван Иванович"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/noteGrey"
+                        android:text="Ректор"/>
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/noteGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/university_phone"
+                android:layout_margin="24dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="+12345678910"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/noteGrey"
+                    android:text="Телефон"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/noteGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/email"
+                android:layout_margin="24dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="ivan1970@mail.ru"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/noteGrey"
+                    android:text="Электронная почта"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/noteGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/location"
+                android:layout_margin="24dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="г.Казань, ул.Радужная д.4"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/noteGrey"
+                    android:text="Адрес"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/noteGrey" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Об университете"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/large_text" />
+
         <info.hoang8f.widget.FButton
+            android:background="#3F51B5"
             android:id="@+id/directions_btn"
             style="@style/btn_introduction"
             android:text="@string/btn_directions"
@@ -22,11 +198,5 @@
             fbutton:shadowColor="@color/siteBack"
             fbutton:shadowHeight="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text"
-        android:id="@+id/info"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

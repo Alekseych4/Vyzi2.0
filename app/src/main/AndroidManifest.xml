@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".List_of_Vyzi_activity"
             android:label="@string/title_activity_list_of__vyzi_activity"
