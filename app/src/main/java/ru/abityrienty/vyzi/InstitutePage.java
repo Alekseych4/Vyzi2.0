@@ -51,6 +51,7 @@ public class InstitutePage extends AppCompatActivity {
     String img;
     final String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/preferences";
     File fileCheck;
+    TextView director, phone, loc, email, inst_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,11 @@ public class InstitutePage extends AppCompatActivity {
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_tool_institute);
         textView = (TextView) findViewById(R.id.institute_text);
         star = (FloatingActionButton) findViewById(R.id.fab_inst);
+        director = (TextView) findViewById(R.id.director);
+        phone =(TextView) findViewById(R.id.phone);
+        loc = (TextView) findViewById(R.id.location);
+        email = (TextView) findViewById(R.id.email);
+        inst_name = (TextView) findViewById(R.id.inst_name);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -172,7 +178,7 @@ public class InstitutePage extends AppCompatActivity {
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.IMG_SRC,
-        DirectionsTableColumns.NAME, DirectionsTableColumns.INFO},"_id="+listId,null,null,null,null);
+        DirectionsTableColumns.NAME, DirectionsTableColumns.INFO, "director", "email", "location", "main_phone"},"_id="+listId,null,null,null,null);
 
         cursor.moveToFirst();
         column_name = cursor.getColumnIndex(DirectionsTableColumns.NAME);
@@ -188,8 +194,14 @@ public class InstitutePage extends AppCompatActivity {
             drawable = Drawable.createFromPath("android.resource://ru.abityrienty.vyzi/drawable/img_default.jpeg");
         }
         collapsingToolbarLayout.setBackground(drawable);
-        setTitle(cursor.getString(column_name));
+        setTitle(null);
         textView.setText(cursor.getString(column_info));
+
+        inst_name.setText(cursor.getString(column_name));
+        director.setText(cursor.getString(cursor.getColumnIndex("director")));
+        phone.setText(cursor.getString(cursor.getColumnIndex("main_phone")));
+        email.setText(cursor.getString(cursor.getColumnIndex("email")));
+        loc.setText(cursor.getString(cursor.getColumnIndex("location")));
     }
 
     @Override

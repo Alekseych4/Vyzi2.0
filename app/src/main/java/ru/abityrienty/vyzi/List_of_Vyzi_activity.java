@@ -43,7 +43,6 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
                 intent.putExtra("_id", id);
 
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -82,7 +81,6 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
     public void openAddComment (View v){
         Intent intent = new Intent(this, Add_comment_activity.class);
         startActivity(intent);
-        finish();
     }
 
 

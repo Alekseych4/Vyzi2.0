@@ -44,7 +44,7 @@ public class UniversityMainActivity extends AppCompatActivity {
     Drawable drawable;
     InputStream inputStream;
     int column_next_table;
-
+    TextView rector, phone, location, www;
 
 
 
@@ -55,14 +55,7 @@ public class UniversityMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab_uni = (FloatingActionButton) findViewById(R.id.fab_uni);
-        fab_uni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         intent = getIntent();
@@ -72,13 +65,18 @@ public class UniversityMainActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.info);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        rector = (TextView) findViewById(R.id.rector);
+        phone = (TextView) findViewById(R.id.phone_uni);
+        location = (TextView) findViewById(R.id.location_uni);
+        www = (TextView) findViewById(R.id.www_uni);
 
         //Database
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(TablesNames.UNIVERSITIES,
                 new String[] {UniMainInfoConsts.UNI_FULL_NAME, UniMainInfoConsts.UNI_BRIEF_NAME,
-                        UniMainInfoConsts.IMG_SRC, UniMainInfoConsts.INFO_ABOUT, UniMainInfoConsts.NEXT_TABLE},
+                        UniMainInfoConsts.IMG_SRC, UniMainInfoConsts.INFO_ABOUT, UniMainInfoConsts.NEXT_TABLE,
+                UniMainInfoConsts.PHONE, UniMainInfoConsts.LOCATION, UniMainInfoConsts.RECTOR, UniMainInfoConsts.WWW},
                 "_id="+list_id,null,null,null,null,null);
         cursor.moveToFirst();
 
@@ -89,6 +87,10 @@ public class UniversityMainActivity extends AppCompatActivity {
         int column_info = cursor.getColumnIndex(UniMainInfoConsts.INFO_ABOUT);
         column_next_table = cursor.getColumnIndex(UniMainInfoConsts.NEXT_TABLE);
 
+        rector.setText(cursor.getString(cursor.getColumnIndex(UniMainInfoConsts.RECTOR)));
+        www.setText(cursor.getString(cursor.getColumnIndex(UniMainInfoConsts.WWW)));
+        phone.setText(cursor.getString(cursor.getColumnIndex(UniMainInfoConsts.PHONE)));
+        location.setText(cursor.getString(cursor.getColumnIndex(UniMainInfoConsts.LOCATION)));
 
         String img = cursor.getString(column_img);
         Uri uri = Uri.parse(img);
@@ -113,7 +115,6 @@ public class UniversityMainActivity extends AppCompatActivity {
                 intent_send = new Intent(getApplicationContext(), Directions_list.class);
                 intent_send.putExtra("tb_name", cursor.getString(column_next_table));
                 startActivity(intent_send);
-                finish();
             }
         });
 

@@ -12,4 +12,8 @@ public class UniMainInfoConsts {
     public static final String IMG_SRC = "img_source";
     public static final String HISTORY_SRC = "history_source";
     public static final String NEXT_TABLE ="next_table";
+    public static final String PHONE = "phone";
+    public static final String LOCATION = "location";
+    public static final String WWW = "www";
+    public static final String RECTOR = "rector";
 }
