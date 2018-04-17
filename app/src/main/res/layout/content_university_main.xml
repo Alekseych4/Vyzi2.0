@@ -51,6 +51,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:background="@color/noteGrey" />
 
         <LinearLayout
@@ -90,6 +92,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:background="@color/noteGrey" />
 
         <LinearLayout
@@ -120,7 +124,7 @@
                     android:layout_marginBottom="16dp"
                     android:textSize="14sp"
                     android:textColor="@color/noteGrey"
-                    android:text="Электронная почта"/>
+                    android:text="Сайт"/>
             </LinearLayout>
 
 
@@ -129,6 +133,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:background="@color/noteGrey" />
 
         <LinearLayout
@@ -168,6 +174,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
             android:background="@color/noteGrey" />
         <TextView
             android:layout_width="wrap_content"
