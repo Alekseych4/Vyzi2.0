@@ -16,12 +16,7 @@
 
     <string name="title_activity_list_of__vyzi_activity">Список ВУЗов</string>
 
-    <!-- University Main Activity !-->
-
-    <string name="title_activity_university_main">UniversityMainActivity</string>
-    <string name="btn_directions">Направления подготовки</string>
-
-    <!-- Add University activivty !-->
+    <!-- Add Comment activivty !-->
 
     <string name="title_activity_add_comment_activity">Добавить новый ВУЗ</string>
     <string name="add_uni">Здесь вы можете оставить своё пожелание о добавлении определенного ВУЗа в наше приложение</string>
@@ -30,6 +25,27 @@
     <string name="hint_comment">Комментарий (по желанию)</string>
     <string name="btn_send">Отправить</string>
 
+    <!-- University Main Activity !-->
+
+    <string name="title_activity_university_main">UniversityMainActivity</string>
+    <string name="btn_directions">Направления подготовки</string>
+    <string name="rector">Ректор</string>
+    <string name="phone_of_priem">Телефон приёмной комиссии</string>
+    <string name="site">Сайт</string>
+    <string name="about_uni">Oб университете</string>
+
+    <!-- Both for University Main Activity and Institute Page Activivty  !-->
+
+    <string name="adress">Адрес</string>
+
+    <!-- Institute Page Activivty  !-->
+
+    <string name="title_activity_institute_page">InstitutePage</string>
+    <string name="director">Директор</string>
+    <string name="e_mail">Электронная почта</string>
+    <string name="phone">Телефон</string>
+    <string name="about_facultet">О факультете</string>
+    <string name="directions_of_institute">Направления</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -122,6 +138,6 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_directions_list">Факультеты</string>
-    <string name="title_activity_institute_page">InstitutePage</string>
     <string name="title_activity_preferences">Избранное</string>
+
 </resources>

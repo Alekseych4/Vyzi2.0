@@ -23,6 +23,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +55,9 @@ public class InstitutePage extends AppCompatActivity {
     final String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/preferences";
     File fileCheck;
     TextView director, phone, loc, email, inst_name;
+    ExpandableListView expandableListView;
+    SimpleCursorTreeAdapter simpleCursorTreeAdapter;
+    Cursor c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class InstitutePage extends AppCompatActivity {
         loc = (TextView) findViewById(R.id.location);
         email = (TextView) findViewById(R.id.email);
         inst_name = (TextView) findViewById(R.id.inst_name);
+        expandableListView = (ExpandableListView) findViewById(R.id.inst_expandable);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -75,6 +82,8 @@ public class InstitutePage extends AppCompatActivity {
         Bundle bundle = receiveIntent.getExtras();
         listId = bundle.getLong("_id");
         tableName = bundle.getString("tb_name");
+
+
 
         //Для нормальной работы звёздочки
         fileCheck = new File(DB_PATH);
@@ -178,7 +187,9 @@ public class InstitutePage extends AppCompatActivity {
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.IMG_SRC,
-        DirectionsTableColumns.NAME, DirectionsTableColumns.INFO, "director", "email", "location", "main_phone"},"_id="+listId,null,null,null,null);
+        DirectionsTableColumns.NAME, DirectionsTableColumns.INFO, "director", "email", "location", "main_phone"},
+                "_id="+listId,
+                null,null,null,null);
 
         cursor.moveToFirst();
         column_name = cursor.getColumnIndex(DirectionsTableColumns.NAME);
@@ -202,6 +213,29 @@ public class InstitutePage extends AppCompatActivity {
         phone.setText(cursor.getString(cursor.getColumnIndex("main_phone")));
         email.setText(cursor.getString(cursor.getColumnIndex("email")));
         loc.setText(cursor.getString(cursor.getColumnIndex("location")));
+
+        c = sqLiteDatabase.query(tableName, new String[]{"_id",DirectionsTableColumns.NAME, DirectionsTableColumns.INFO},
+                null, null,null,null,null);
+        c.moveToFirst();
+        String [] groupFrom = {DirectionsTableColumns.NAME};
+        int [] groupTo = {android.R.id.text1};
+        String [] childFrom = {"info"};
+        int [] childTo = {android.R.id.text1};
+
+        simpleCursorTreeAdapter = new SimpleCursorTreeAdapter(getApplicationContext(), c,
+                android.R.layout.simple_expandable_list_item_1,
+                groupFrom, groupTo, android.R.layout.simple_list_item_1, childFrom, childTo) {
+            @Override
+            protected Cursor getChildrenCursor(Cursor groupCursor) {
+                int id = groupCursor.getInt(groupCursor.getColumnIndex("_id"));
+                MyDBHelper md = new MyDBHelper(getApplicationContext());
+                SQLiteDatabase sq = md.open();
+                Cursor cursorChild = sq.query("dop", new String [] {"_id","info"},"_id=2",null,null,null,null);
+                return cursorChild;
+            }
+        };
+
+        expandableListView.setAdapter(simpleCursorTreeAdapter);
     }
 
     @Override

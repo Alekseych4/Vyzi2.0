@@ -38,19 +38,10 @@
 
                     <TextView
                         android:id="@+id/director"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/brief_info_string"/>
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/noteGrey"
-                        android:text="Директор"/>
+                        style="@style/brief_info_hint"
+                        android:text="@string/director"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -80,18 +71,10 @@
 
                     <TextView
                         android:id="@+id/phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/brief_info_string" />
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/noteGrey"
-                        android:text="Телефон"/>
+                        style="@style/brief_info_hint"
+                        android:text="@string/phone"/>
                 </LinearLayout>
 
 
@@ -121,18 +104,10 @@
 
                     <TextView
                         android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/brief_info_string"/>
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/noteGrey"
-                        android:text="Электронная почта"/>
+                        style="@style/brief_info_hint"
+                        android:text="@string/e_mail"/>
                 </LinearLayout>
 
 
@@ -162,18 +137,10 @@
 
                     <TextView
                         android:id="@+id/location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/brief_info_string"/>
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/noteGrey"
-                        android:text="Адрес"/>
+                        style="@style/brief_info_hint"
+                        android:text="@string/adress"/>
                 </LinearLayout>
 
 
@@ -186,22 +153,28 @@
                 android:layout_marginLeft="16dp"
                 android:background="@color/noteGrey" />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="О факультете"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/black"
-                android:textSize="24sp"/>
+                style="@style/subheader"
+                android:text="@string/about_facultet"/>
 
             <TextView
                 android:id="@+id/institute_text"
-                android:layout_width="wrap_content"
+                style="@style/block_of_something"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/text_margin"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:orientation="vertical">
+                <TextView
+                    style="@style/subheader"
+                    android:text="@string/directions_of_institute"/>
+                <ExpandableListView
+                    android:id="@+id/inst_expandable"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_margin="16dp">
+
+                </ExpandableListView>
+            </LinearLayout>
 
         </LinearLayout>
 

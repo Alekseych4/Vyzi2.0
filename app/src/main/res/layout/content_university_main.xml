@@ -30,19 +30,10 @@
 
                     <TextView
                         android:id="@+id/rector"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        style="@style/brief_info_string"/>
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/noteGrey"
-                        android:text="Ректор"/>
+                        style="@style/brief_info_hint"
+                        android:text="@string/rector"/>
                 </LinearLayout>
 
 
@@ -72,18 +63,10 @@
 
                 <TextView
                     android:id="@+id/phone_uni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    style="@style/brief_info_string" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/noteGrey"
-                    android:text="Телефон приёмной комиссии"/>
+                    style="@style/brief_info_hint"
+                    android:text="@string/phone_of_priem"/>
             </LinearLayout>
 
 
@@ -113,18 +96,10 @@
 
                 <TextView
                     android:id="@+id/www_uni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    style="@style/brief_info_string" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/noteGrey"
-                    android:text="Сайт"/>
+                    style="@style/brief_info_hint"
+                    android:text="@string/site"/>
             </LinearLayout>
 
 
@@ -154,18 +129,10 @@
 
                 <TextView
                     android:id="@+id/location_uni"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    style="@style/brief_info_string"/>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/noteGrey"
-                    android:text="Адрес"/>
+                    style="@style/brief_info_hint"
+                    android:text="@string/adress"/>
             </LinearLayout>
 
 
@@ -178,23 +145,12 @@
             android:layout_marginLeft="16dp"
             android:background="@color/noteGrey" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Об университете"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/black"
-            android:textSize="24sp"/>
+            style="@style/subheader"
+            android:text="@string/about_uni"/>
 
         <TextView
             android:id="@+id/info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/large_text" />
+            style="@style/block_of_something"/>
 
         <info.hoang8f.widget.FButton
             android:background="#3F51B5"
