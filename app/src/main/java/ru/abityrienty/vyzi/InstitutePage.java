@@ -1,39 +1,31 @@
 package ru.abityrienty.vyzi;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.ImageView;
 import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Time;
+
+import ru.abityrienty.vyzi.constants.DirectionsTableColumns;
+import ru.abityrienty.vyzi.utils.DbHelperPref;
 
 public class InstitutePage extends AppCompatActivity {
     Intent receiveIntent;
@@ -58,6 +50,7 @@ public class InstitutePage extends AppCompatActivity {
     ExpandableListView expandableListView;
     SimpleCursorTreeAdapter simpleCursorTreeAdapter;
     Cursor c;
+    ImageView collapse_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +59,7 @@ public class InstitutePage extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_tool_institute);
+        collapse_img = (ImageView) findViewById(R.id.inst_collapse_img);
         textView = (TextView) findViewById(R.id.institute_text);
         star = (FloatingActionButton) findViewById(R.id.fab_inst);
         director = (TextView) findViewById(R.id.director);
@@ -198,13 +192,8 @@ public class InstitutePage extends AppCompatActivity {
 
         img = cursor.getString(column_img);
         Uri uri = Uri.parse(img);
-        try{
-            inputStream = getContentResolver().openInputStream(uri);
-            drawable = Drawable.createFromStream(inputStream, uri.toString());
-        }  catch (FileNotFoundException e) {
-            drawable = Drawable.createFromPath("android.resource://ru.abityrienty.vyzi/drawable/img_default.jpeg");
-        }
-        collapsingToolbarLayout.setBackground(drawable);
+        Picasso.with(this).load(uri).fit().into(collapse_img);
+
         setTitle(null);
         textView.setText(cursor.getString(column_info));
 
@@ -245,11 +234,7 @@ public class InstitutePage extends AppCompatActivity {
         sqLiteDatabase.close();
         myDBHelper.close();
         cursor.close();
-        try {
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.gc();
         Log.d("DESTROY", "InstPage has destroyed");
     }
 

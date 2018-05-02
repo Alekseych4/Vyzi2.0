@@ -46,7 +46,7 @@
                         android:layout_height="60dp"
                         android:background="@null"
                         android:onClick="openUniversityMainActivity"
-                        android:src="@mipmap/kfu" />
+                        android:src="@mipmap/kfu"/>
 
                     <ImageButton
                         android:id="@+id/btn_2"
@@ -133,7 +133,7 @@
                 <info.hoang8f.widget.FButton
                     android:id="@+id/btn_prefer"
                     style="@style/btn_introduction"
-                    android:text="Избранное"
+                    android:text="@string/pref"
                     fbutton:buttonColor="@color/shadow2"
                     fbutton:cornerRadius="16dp"
                     fbutton:shadowColor="@color/siteBack"

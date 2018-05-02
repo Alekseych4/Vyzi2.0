@@ -1,4 +1,4 @@
-package ru.abityrienty.vyzi;
+package ru.abityrienty.vyzi.constants;
 
 /**
  * Created by 800704 on 15.02.2018.

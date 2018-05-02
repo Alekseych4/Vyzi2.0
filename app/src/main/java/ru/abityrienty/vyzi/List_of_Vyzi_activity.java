@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ru.abityrienty.vyzi.constants.UniMainInfoConsts;
+import ru.abityrienty.vyzi.constants.TablesNames;
 
 
 public class List_of_Vyzi_activity extends AppCompatActivity {
@@ -21,6 +23,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
     Cursor cursor;
     ListView listView;
     SimpleCursorAdapter simpleCursorAdapter;
+    ListOfVyziAdapter listOfVyziAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), UniversityMainActivity.class);
+                Intent intent = new Intent(getBaseContext(), UniversityMainActivity.class);
                 intent.putExtra("_id", id);
 
                 startActivity(intent);
@@ -46,23 +49,30 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
 
 
         // открываем подключение
-        myDBHelper = new MyDBHelper(getApplicationContext());
+        myDBHelper = new MyDBHelper(this);
         sqLiteDatabase = myDBHelper.open();
 
         //получаем данные из бд в виде курсора
         cursor =  sqLiteDatabase.query(TablesNames.UNIVERSITIES,
-                new String[] {UniMainInfoConsts.ID,
-                        UniMainInfoConsts.IMG_SRC, MyDBHelper.COLUMN_UNI,
+                new String[] {UniMainInfoConsts.ID,UniMainInfoConsts.IMG_SRC, MyDBHelper.COLUMN_UNI,
                         MyDBHelper.COLUMN_BRI}, null, null,null,null,null);
 
         // определяем, какие столбцы из курсора будут выводиться в ListView
         cursor.moveToFirst();
         String[] headers = new String[] {UniMainInfoConsts.IMG_SRC, MyDBHelper.COLUMN_UNI, MyDBHelper.COLUMN_BRI};
         // создаем адаптер, передаем в него курсор
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.layout_for_list,
+        listOfVyziAdapter = new ListOfVyziAdapter(this, R.layout.layout_for_list,
                 cursor, headers, new int[]{R.id.imageView, R.id.main_text, R.id.sub_text}, 0);
 
-        listView.setAdapter(simpleCursorAdapter);
+        listView.setAdapter(listOfVyziAdapter);
+    }
+
+
+    @Override
+    protected void onStop() {
+        Log.d("onStop", "LIST OF VYZI STOPPED");
+        super.onStop();
+        System.gc();
     }
 
     @Override
@@ -72,7 +82,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         sqLiteDatabase.close();
         cursor.close();
         myDBHelper.close();
-        Log.d("Destr", "List destr");
+        Log.d("Destr", "LIST OF VYZI DESTROYED");
     }
 
 

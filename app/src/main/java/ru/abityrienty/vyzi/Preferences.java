@@ -1,24 +1,20 @@
 package ru.abityrienty.vyzi;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ru.abityrienty.vyzi.utils.DbHelperPref;
+
 public class Preferences extends AppCompatActivity {
     ListView listView;
-    SimpleCursorAdapter simpleCursorAdapter;
+    ListOfVyziAdapter listOfVyziAdapter;
     DbHelperPref dbHelperPref;
     SQLiteDatabase sqLiteDatabasePref;
     Cursor cursorPref;
@@ -42,17 +38,17 @@ public class Preferences extends AppCompatActivity {
         super.onResume();
 
 
-        dbHelperPref = new DbHelperPref(getApplicationContext());
+        dbHelperPref = new DbHelperPref(this);
 
         sqLiteDatabasePref = dbHelperPref.getReadableDatabase();
 
         cursorPref = sqLiteDatabasePref.query("preferences", null, null, null, null, null, null);
         cursorPref.moveToFirst();
 
-        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.layout_for_list,
+        listOfVyziAdapter = new ListOfVyziAdapter(this, R.layout.layout_for_list,
                 cursorPref, new String[]{"img_src", "name"},
                 new int[]{R.id.imageView, R.id.main_text}, 0);
-        listView.setAdapter(simpleCursorAdapter);
+        listView.setAdapter(listOfVyziAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,7 +56,7 @@ public class Preferences extends AppCompatActivity {
                 cursorPref.moveToPosition(position);
                 idInTable = cursorPref.getLong(cursorPref.getColumnIndex("tableId"));
                 tableName = cursorPref.getString(cursorPref.getColumnIndex("tableName"));
-                Intent sendIntent = new Intent(getApplicationContext(), InstitutePage.class);
+                Intent sendIntent = new Intent(getBaseContext(), InstitutePage.class);
                 sendIntent.putExtra("_id", idInTable);
                 sendIntent.putExtra("tb_name", tableName);
                 startActivity(sendIntent);
@@ -69,10 +65,9 @@ public class Preferences extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        sqLiteDatabasePref.close();
-        cursorPref.close();
+    protected void onStop() {
+        super.onStop();
+        System.gc();
     }
 
     @Override
@@ -80,5 +75,6 @@ public class Preferences extends AppCompatActivity {
         super.onDestroy();
         sqLiteDatabasePref.close();
         cursorPref.close();
+        System.gc();
     }
 }

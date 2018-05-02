@@ -13,12 +13,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ru.abityrienty.vyzi.constants.DirectionsTableColumns;
+
 public class Directions_list extends AppCompatActivity {
 
     SQLiteDatabase sqLiteDatabase;
     MyDBHelper myDBHelper;
     Cursor cursor;
     SimpleCursorAdapter simpleCursorAdapter;
+    ListOfVyziAdapter listOfVyziAdapter;
     ListView listView;
     String tableName;
     Intent receiveIntent, sendIntent;
@@ -46,7 +49,7 @@ public class Directions_list extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        myDBHelper = new MyDBHelper(getApplicationContext());
+        myDBHelper = new MyDBHelper(this);
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.ID,DirectionsTableColumns.NAME,
                         DirectionsTableColumns.IMG_SRC},
@@ -54,16 +57,16 @@ public class Directions_list extends AppCompatActivity {
 
         cursor.moveToFirst();
 
-        simpleCursorAdapter = new SimpleCursorAdapter(getApplicationContext(), R.layout.layout_for_list,
+        listOfVyziAdapter = new ListOfVyziAdapter(this, R.layout.layout_for_list,
                 cursor, new String[] {DirectionsTableColumns.IMG_SRC, DirectionsTableColumns.NAME},
                 new int [] {R.id.imageView, R.id.main_text},0);
 
-        listView.setAdapter(simpleCursorAdapter);
+        listView.setAdapter(listOfVyziAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                sendIntent = new Intent(getApplicationContext(), InstitutePage.class);
+                sendIntent = new Intent(getBaseContext(), InstitutePage.class);
                 sendIntent.putExtra("_id", id);
                 sendIntent.putExtra("tb_name", tableName);
                 startActivity(sendIntent);
