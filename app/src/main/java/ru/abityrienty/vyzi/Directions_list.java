@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import ru.abityrienty.vyzi.constants.DirectionsTableColumns;
+import ru.abityrienty.vyzi.utils.ListOfVyziAdapter;
+import ru.abityrienty.vyzi.utils.MyDBHelper;
 
 public class Directions_list extends AppCompatActivity {
 

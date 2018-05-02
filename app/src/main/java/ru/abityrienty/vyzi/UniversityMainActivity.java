@@ -22,6 +22,7 @@ import java.io.InputStream;
 import ru.abityrienty.vyzi.constants.UniMainInfoConsts;
 import ru.abityrienty.vyzi.utils.Decoding_bitmaps;
 import ru.abityrienty.vyzi.constants.TablesNames;
+import ru.abityrienty.vyzi.utils.MyDBHelper;
 
 public class UniversityMainActivity extends AppCompatActivity {
 

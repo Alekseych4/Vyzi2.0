@@ -14,6 +14,8 @@ import android.widget.ListView;
 
 import ru.abityrienty.vyzi.constants.UniMainInfoConsts;
 import ru.abityrienty.vyzi.constants.TablesNames;
+import ru.abityrienty.vyzi.utils.ListOfVyziAdapter;
+import ru.abityrienty.vyzi.utils.MyDBHelper;
 
 
 public class List_of_Vyzi_activity extends AppCompatActivity {

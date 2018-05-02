@@ -1,4 +1,4 @@
-package ru.abityrienty.vyzi;
+package ru.abityrienty.vyzi.utils;
 
 import android.content.Context;
 import android.content.res.Resources;

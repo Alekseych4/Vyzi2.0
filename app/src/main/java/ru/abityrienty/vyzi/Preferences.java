@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import ru.abityrienty.vyzi.utils.DbHelperPref;
+import ru.abityrienty.vyzi.utils.ListOfVyziAdapter;
 
 public class Preferences extends AppCompatActivity {
     ListView listView;

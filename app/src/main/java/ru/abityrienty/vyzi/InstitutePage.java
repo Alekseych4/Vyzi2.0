@@ -26,6 +26,7 @@ import java.io.InputStream;
 
 import ru.abityrienty.vyzi.constants.DirectionsTableColumns;
 import ru.abityrienty.vyzi.utils.DbHelperPref;
+import ru.abityrienty.vyzi.utils.MyDBHelper;
 
 public class InstitutePage extends AppCompatActivity {
     Intent receiveIntent;
