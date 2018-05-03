@@ -33,6 +33,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
                         android:fontFamily="sans-serif"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -75,6 +76,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:autoLink="phone"
+                    android:linksClickable="true"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
                 <TextView
@@ -116,7 +120,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
                     android:textColor="@color/black"
+                    android:autoLink="web"
+                    android:linksClickable="true"
                     android:textSize="16sp" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -157,7 +164,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
                     android:textColor="@color/black"
+                    android:autoLink="map"
+                    android:linksClickable="true"
                     android:textSize="16sp" />
                 <TextView
                     android:layout_width="wrap_content"
