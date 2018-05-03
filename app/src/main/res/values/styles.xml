@@ -65,11 +65,40 @@
 
     <style name="institute_name">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/grey</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/text_margin</item>
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="subheader">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="block_of_something">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="brief_info_string">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="brief_info_hint">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/noteGrey</item>
+    </style>
 </resources>

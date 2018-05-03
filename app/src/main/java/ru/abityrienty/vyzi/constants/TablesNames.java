@@ -1,4 +1,4 @@
-package ru.abityrienty.vyzi;
+package ru.abityrienty.vyzi.constants;
 
 /**
  * Created by 800704 on 24.07.2017.
@@ -11,6 +11,5 @@ public class TablesNames {
     public static final String KNITY = "KNITY";
     public static final String KGMU = "KGMU";
     public static final String UNIVERSITIES = "universities";
-    public static final String UNIVERSITY_BRIEF_INFO = "university_brief_info";
 
 }

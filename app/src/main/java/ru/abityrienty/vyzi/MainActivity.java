@@ -1,9 +1,15 @@
 package ru.abityrienty.vyzi;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+=======
+import android.os.AsyncTask;
+>>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,11 +19,15 @@ import android.widget.Button;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import ru.abityrienty.vyzi.utils.MyDBHelper;
+
 
 public class MainActivity extends AppCompatActivity {
     MyDBHelper myDBHelper;
     Button btnP;
     Toolbar toolbar;
+    CreatingTask creatingTask;
+    ProgressDialog progressDialog;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -45,10 +55,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.star_icon);
 
         //Создаём базу данных на устройстве на основе имеющейся
-        myDBHelper = new MyDBHelper(getApplicationContext());
+        myDBHelper = new MyDBHelper(this);
         if(!myDBHelper.check_exist_db()){
-            myDBHelper.create_db();
+            creatingTask = new CreatingTask();
+            creatingTask.execute(this);
         }
+
+
 
         final Button btn = (Button) findViewById(R.id.btn_introduction);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         btnP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), Preferences.class);
+                Intent intent1 = new Intent(getBaseContext(), Preferences.class);
                 startActivity(intent1);
             }
         });
@@ -74,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openUniversityMainActivity(View view){
-        Intent intent = new Intent(getApplicationContext(), UniversityMainActivity.class);
+        Intent intent = new Intent(this, UniversityMainActivity.class);
         String id = view.getResources().getResourceEntryName(view.getId());
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(id);
@@ -93,5 +106,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         myDBHelper.close();
+        System.gc();
     }
-}
+
+    class CreatingTask extends AsyncTask<Context, Void, Void>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setMessage("Подготовка файлов");
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Context... params) {
+            MyDBHelper md = new MyDBHelper(params[0]);
+            md.create_db();
+            md.close();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.setProgress(100);
+            progressDialog.dismiss();
+
+        }
+    }
+ }
