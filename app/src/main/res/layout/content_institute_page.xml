@@ -38,17 +38,8 @@
 
                     <TextView
                         android:id="@+id/director"
-<<<<<<< HEAD
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:fontFamily="sans-serif"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-=======
                         style="@style/brief_info_string"/>
->>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
+
                     <TextView
                         style="@style/brief_info_hint"
                         android:text="@string/director"/>
@@ -81,18 +72,10 @@
 
                     <TextView
                         android:id="@+id/phone"
-<<<<<<< HEAD
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:textColor="@color/black"
                         android:autoLink="phone"
                         android:linksClickable="true"
-                        android:textSize="16sp" />
-=======
                         style="@style/brief_info_string" />
->>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
+
                     <TextView
                         style="@style/brief_info_hint"
                         android:text="@string/phone"/>
@@ -125,18 +108,9 @@
 
                     <TextView
                         android:id="@+id/email"
-<<<<<<< HEAD
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:textColor="@color/black"
                         android:autoLink="email"
                         android:linksClickable="true"
-                        android:textSize="16sp" />
-=======
                         style="@style/brief_info_string"/>
->>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
                     <TextView
                         style="@style/brief_info_hint"
                         android:text="@string/e_mail"/>
@@ -169,18 +143,10 @@
 
                     <TextView
                         android:id="@+id/location"
-<<<<<<< HEAD
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:textColor="@color/black"
                         android:autoLink="map"
                         android:linksClickable="true"
-                        android:textSize="16sp" />
-=======
                         style="@style/brief_info_string"/>
->>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
+
                     <TextView
                         style="@style/brief_info_hint"
                         android:text="@string/adress"/>

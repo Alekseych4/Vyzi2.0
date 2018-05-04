@@ -3,13 +3,10 @@ package ru.abityrienty.vyzi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-=======
 import android.os.AsyncTask;
->>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
