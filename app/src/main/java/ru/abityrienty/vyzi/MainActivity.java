@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         myDBHelper.close();
-        System.gc();
     }
 
     class CreatingTask extends AsyncTask<Context, Void, Void>{

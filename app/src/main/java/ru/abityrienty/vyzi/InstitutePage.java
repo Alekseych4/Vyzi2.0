@@ -208,17 +208,17 @@ public class InstitutePage extends AppCompatActivity {
                 null, null,null,null,null);
         c.moveToFirst();
         String [] groupFrom = {DirectionsTableColumns.NAME};
-        int [] groupTo = {android.R.id.text1};
+        int [] groupTo = {R.id.item_of_group_of_expandable_list};
         String [] childFrom = {"info"};
-        int [] childTo = {android.R.id.text1};
+        int [] childTo = {R.id.item_of_child_of_expandable_list};
 
         simpleCursorTreeAdapter = new SimpleCursorTreeAdapter(getApplicationContext(), c,
-                android.R.layout.simple_expandable_list_item_1,
-                groupFrom, groupTo, android.R.layout.simple_list_item_1, childFrom, childTo) {
+                R.layout.layout_for_expandable_list_group,
+                groupFrom, groupTo, R.layout.layout_for_expandable_list_child, childFrom, childTo) {
             @Override
             protected Cursor getChildrenCursor(Cursor groupCursor) {
                 int id = groupCursor.getInt(groupCursor.getColumnIndex("_id"));
-                MyDBHelper md = new MyDBHelper(getApplicationContext());
+                MyDBHelper md = new MyDBHelper(getBaseContext());
                 SQLiteDatabase sq = md.open();
                 Cursor cursorChild = sq.query("dop", new String [] {"_id","info"},"_id=2",null,null,null,null);
                 return cursorChild;
