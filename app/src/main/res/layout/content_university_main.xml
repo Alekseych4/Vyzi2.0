@@ -30,7 +30,17 @@
 
                     <TextView
                         android:id="@+id/rector"
+<<<<<<< HEAD
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+=======
                         style="@style/brief_info_string"/>
+>>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
                     <TextView
                         style="@style/brief_info_hint"
                         android:text="@string/rector"/>
@@ -63,7 +73,18 @@
 
                 <TextView
                     android:id="@+id/phone_uni"
+<<<<<<< HEAD
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:autoLink="phone"
+                    android:linksClickable="true"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+=======
                     style="@style/brief_info_string" />
+>>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
                 <TextView
                     style="@style/brief_info_hint"
                     android:text="@string/phone_of_priem"/>
@@ -96,7 +117,18 @@
 
                 <TextView
                     android:id="@+id/www_uni"
+<<<<<<< HEAD
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/black"
+                    android:autoLink="web"
+                    android:linksClickable="true"
+                    android:textSize="16sp" />
+=======
                     style="@style/brief_info_string" />
+>>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
                 <TextView
                     style="@style/brief_info_hint"
                     android:text="@string/site"/>
@@ -129,7 +161,18 @@
 
                 <TextView
                     android:id="@+id/location_uni"
+<<<<<<< HEAD
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textColor="@color/black"
+                    android:autoLink="map"
+                    android:linksClickable="true"
+                    android:textSize="16sp" />
+=======
                     style="@style/brief_info_string"/>
+>>>>>>> b22333a4ff29520d1a69773a091087850f1caa13
                 <TextView
                     style="@style/brief_info_hint"
                     android:text="@string/adress"/>
