@@ -11,6 +11,6 @@ public class AppSplash extends Application {
     public void onCreate() {
         super.onCreate();
         // Don't do this! This is just so cold launches take some time
-        SystemClock.sleep(TimeUnit.SECONDS.toMillis(3));
+        //SystemClock.sleep(TimeUnit.SECONDS.toMillis(3));
     }
 }
