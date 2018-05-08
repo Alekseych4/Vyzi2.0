@@ -75,5 +75,13 @@ public class FirstFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cursor.close();
+        sqLiteDatabase.close();
+        myDBHelper.close();
     }
+}
 
