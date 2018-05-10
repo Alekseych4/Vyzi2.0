@@ -28,6 +28,6 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:layout_marginLeft="@dimen/margin_default"
-            android:textColor="@color/black"/>
+            android:textColor="@color/shadow"/>
         </LinearLayout>
 </LinearLayout>

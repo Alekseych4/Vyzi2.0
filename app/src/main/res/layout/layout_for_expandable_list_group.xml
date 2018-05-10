@@ -6,7 +6,8 @@
 <TextView
     android:id="@+id/item_of_group_of_expandable_list"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginLeft="5dp"
-    android:textColor="@color/black"/>
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_default"
+    android:layout_marginBottom="@dimen/margin_default"
+    android:textColor="@color/grey"/>
 </LinearLayout>

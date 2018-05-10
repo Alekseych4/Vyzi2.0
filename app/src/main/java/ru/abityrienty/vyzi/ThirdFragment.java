@@ -72,11 +72,15 @@ public class ThirdFragment extends Fragment {
         });
     }
 
+
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        cursorPref.close();
-        dbHelperPref.close();
-        sqLiteDatabasePref.close();
+    public void onDestroy() {
+        super.onDestroy();
+        if(dbHelperPref.check_exist_db()) {
+            cursorPref.close();
+            dbHelperPref.close();
+            sqLiteDatabasePref.close();
+        }
     }
 }

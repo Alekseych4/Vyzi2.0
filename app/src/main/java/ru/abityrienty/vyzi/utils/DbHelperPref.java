@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
+
 /**
  * Created by 800704 on 06.04.2018.
  */
@@ -31,6 +33,10 @@ public class DbHelperPref extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+    public boolean check_exist_db(){
+        File file = new File("/data/data/ru.abityrienty.vyzi/databases/preferences");
+        return file.exists();
     }
 }
 
