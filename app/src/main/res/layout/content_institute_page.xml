@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ru.abityrienty.vyzi.InstitutePage"
     tools:showIn="@layout/activity_institute_page">
     
-    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -176,16 +180,17 @@
                 <TextView
                     style="@style/subheader"
                     android:text="@string/directions_of_institute"/>
-                <ExpandableListView
-                    android:id="@+id/inst_expandable"
+
+                <ru.abityrienty.vyzi.utils.CustomExpandableListView
+                    android:id="@+id/expandable_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp">
 
-                </ExpandableListView>
+                </ru.abityrienty.vyzi.utils.CustomExpandableListView>
 
             </LinearLayout>
 
         </LinearLayout>
-
-</android.support.v4.widget.NestedScrollView>
+    </ScrollView>
+</LinearLayout>

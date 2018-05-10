@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import ru.abityrienty.vyzi.constants.DirectionsTableColumns;
+import ru.abityrienty.vyzi.utils.CustomExpandableListView;
 import ru.abityrienty.vyzi.utils.DbHelperPref;
 import ru.abityrienty.vyzi.utils.MyDBHelper;
 
@@ -52,6 +53,7 @@ public class InstitutePage extends AppCompatActivity {
     SimpleCursorTreeAdapter simpleCursorTreeAdapter;
     Cursor c;
     ImageView collapse_img;
+    CustomExpandableListView customExpandableListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,9 @@ public class InstitutePage extends AppCompatActivity {
         loc = (TextView) findViewById(R.id.location);
         email = (TextView) findViewById(R.id.email);
         inst_name = (TextView) findViewById(R.id.inst_name);
-        expandableListView = (ExpandableListView) findViewById(R.id.inst_expandable);
+        //expandableListView = (ExpandableListView) findViewById(R.id.inst_expandable);
+        customExpandableListView = (CustomExpandableListView) findViewById(R.id.expandable_list);
+        customExpandableListView .setExpanded(true);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -204,6 +208,9 @@ public class InstitutePage extends AppCompatActivity {
         email.setText(cursor.getString(cursor.getColumnIndex("email")));
         loc.setText(cursor.getString(cursor.getColumnIndex("location")));
 
+
+
+
         c = sqLiteDatabase.query(tableName, new String[]{"_id",DirectionsTableColumns.NAME, DirectionsTableColumns.INFO},
                 null, null,null,null,null);
         c.moveToFirst();
@@ -212,7 +219,7 @@ public class InstitutePage extends AppCompatActivity {
         String [] childFrom = {"info"};
         int [] childTo = {R.id.item_of_child_of_expandable_list};
 
-        simpleCursorTreeAdapter = new SimpleCursorTreeAdapter(getApplicationContext(), c,
+        simpleCursorTreeAdapter = new SimpleCursorTreeAdapter(getBaseContext(), c,
                 R.layout.layout_for_expandable_list_group,
                 groupFrom, groupTo, R.layout.layout_for_expandable_list_child, childFrom, childTo) {
             @Override
@@ -225,7 +232,7 @@ public class InstitutePage extends AppCompatActivity {
             }
         };
 
-        expandableListView.setAdapter(simpleCursorTreeAdapter);
+        customExpandableListView.setAdapter(simpleCursorTreeAdapter);
     }
 
     @Override
