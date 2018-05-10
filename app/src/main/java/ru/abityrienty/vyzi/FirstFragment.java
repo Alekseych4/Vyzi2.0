@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class FirstFragment extends Fragment {
     SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
     ListOfVyziAdapter listOfVyziAdapter;
-
+    FloatingActionButton fab_list;
 
     public FirstFragment() {
     }
@@ -39,6 +40,15 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.first_fragment, container, false);
         listView = (ListView) view.findViewById(R.id.list_of_vyzi_frag);
+        fab_list = (FloatingActionButton) view.findViewById(R.id.fab_add);
+        fab_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Add_comment_activity.class);
+                startActivity(intent);
+            }
+        });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -82,6 +92,11 @@ public class FirstFragment extends Fragment {
         cursor.close();
         sqLiteDatabase.close();
         myDBHelper.close();
+    }
+
+    public void openAddComment (View v){
+        Intent intent = new Intent(getContext(), Add_comment_activity.class);
+        startActivity(intent);
     }
 }
 

@@ -10,6 +10,7 @@
     <color name="grey">#5d5d5d</color>
     <color name="black">#000000</color>
     <color name="siteColor">#782562</color>
+    <color name="fab_pressed">#8b9678</color>
     <color name="siteBack">#8bb478</color>
     <color name="shadow2">#9cc5aa</color>
     <color name="tabText">#dcedc8</color>

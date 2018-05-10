@@ -39,6 +39,13 @@ public class ThirdFragment extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.list_preferences_frag);
 
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         dbHelperPref = new DbHelperPref(getContext());
 
         sqLiteDatabasePref = dbHelperPref.getReadableDatabase();
@@ -63,12 +70,11 @@ public class ThirdFragment extends Fragment {
                 startActivity(sendIntent);
             }
         });
-        return view;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         cursorPref.close();
         dbHelperPref.close();
         sqLiteDatabasePref.close();
