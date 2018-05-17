@@ -208,7 +208,7 @@ public class InstitutePage extends AppCompatActivity {
         email.setText(cursor.getString(cursor.getColumnIndex("email")));
         loc.setText(cursor.getString(cursor.getColumnIndex("location")));
 
-
+        customExpandableListView.setIndicatorBounds(96, 4);
         final String expandTable = cursor.getString(cursor.getColumnIndex("next_table"));
 
         c = sqLiteDatabase.query(expandTable, new String[]{"_id","direction"},
