@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import info.hoang8f.widget.FButton;
 
 public class Add_comment_activity extends AppCompatActivity {
     FButton fButton;
+    EditText editText1, editText2, editText3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
