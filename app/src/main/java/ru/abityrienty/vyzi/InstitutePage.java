@@ -186,7 +186,7 @@ public class InstitutePage extends AppCompatActivity {
         myDBHelper = new MyDBHelper(getApplicationContext());
         sqLiteDatabase = myDBHelper.open();
         cursor = sqLiteDatabase.query(tableName, new String[]{DirectionsTableColumns.IMG_SRC,
-        DirectionsTableColumns.NAME, DirectionsTableColumns.INFO, "director", "email", "location", "main_phone"},
+        DirectionsTableColumns.NAME, DirectionsTableColumns.INFO, "director", "email", "location", "main_phone", "next_table"},
                 "_id="+listId,
                 null,null,null,null);
 
@@ -209,15 +209,17 @@ public class InstitutePage extends AppCompatActivity {
         loc.setText(cursor.getString(cursor.getColumnIndex("location")));
 
 
+        final String expandTable = cursor.getString(cursor.getColumnIndex("next_table"));
 
-
-        c = sqLiteDatabase.query(tableName, new String[]{"_id",DirectionsTableColumns.NAME, DirectionsTableColumns.INFO},
+        c = sqLiteDatabase.query(expandTable, new String[]{"_id","direction"},
                 null, null,null,null,null);
         c.moveToFirst();
-        String [] groupFrom = {DirectionsTableColumns.NAME};
+        String [] groupFrom = {"direction"};
         int [] groupTo = {R.id.item_of_group_of_expandable_list};
-        String [] childFrom = {"info"};
-        int [] childTo = {R.id.item_of_child_of_expandable_list};
+        String [] childFrom = {"first_sub", "second_sub", "third_sub",
+                "first_point", "second_point", "third_point", "min_budg", "min_contract"};
+        int [] childTo = {R.id.first_subject,R.id.second_subject,R.id.third_subject,R.id.first_point,
+        R.id.second_point,R.id.third_point,R.id.min_budget,R.id.min_contract};
 
         simpleCursorTreeAdapter = new SimpleCursorTreeAdapter(getBaseContext(), c,
                 R.layout.layout_for_expandable_list_group,
@@ -227,7 +229,8 @@ public class InstitutePage extends AppCompatActivity {
                 int id = groupCursor.getInt(groupCursor.getColumnIndex("_id"));
                 MyDBHelper md = new MyDBHelper(getBaseContext());
                 SQLiteDatabase sq = md.open();
-                Cursor cursorChild = sq.query("dop", new String [] {"_id","info"},"_id=2",null,null,null,null);
+                Cursor cursorChild = sq.query(expandTable, new String [] {"_id","first_sub", "second_sub", "third_sub",
+                "first_point", "second_point", "third_point", "min_budg", "min_contract"},"_id="+id,null,null,null,null);
                 return cursorChild;
             }
         };
