@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:hint="@string/hint_comment"
-                    android:inputType="textCapSentences"/>
+                    android:inputType="textMultiLine"/>
 
                 <info.hoang8f.widget.FButton
                     android:id="@+id/send_btn"
