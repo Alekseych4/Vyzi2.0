@@ -43,7 +43,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:hint="@string/hint_name" />
+                    android:hint="@string/hint_name"
+                    android:inputType="textCapSentences"/>
 
                 <EditText
                     android:id="@+id/your_location"
@@ -51,7 +52,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:hint="@string/hint_location" />
+                    android:hint="@string/hint_location"
+                    android:inputType="textCapSentences"/>
+
+                <EditText
+                    android:id="@+id/your_email"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="@string/your_email"
+                    android:inputType="textEmailAddress"/>
 
                 <EditText
                     android:id="@+id/comment"
@@ -59,7 +70,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:hint="@string/hint_comment" />
+                    android:hint="@string/hint_comment"
+                    android:inputType="textCapSentences"/>
 
                 <info.hoang8f.widget.FButton
                     android:id="@+id/send_btn"
@@ -70,7 +82,7 @@
                     fbutton:buttonColor="@color/shadow2"
                     fbutton:cornerRadius="0dp"
                     fbutton:shadowColor="@color/siteBack"
-                    fbutton:shadowHeight="5dp" />
+                    fbutton:shadowHeight="5dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

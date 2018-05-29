@@ -21,8 +21,9 @@
 
     <string name="title_activity_add_comment_activity">Добавить новый ВУЗ</string>
     <string name="add_uni">Здесь вы можете оставить своё пожелание о добавлении определенного ВУЗа в наше приложение</string>
-    <string name="hint_name">Название ВУЗа</string>
-    <string name="hint_location">Месторасположение (город)</string>
+    <string name="hint_name">Название ВУЗа*</string>
+    <string name="hint_location">Месторасположение (город)*</string>
+    <string name="your_email">Email для обратной связи (по желанию)</string>
     <string name="hint_comment">Комментарий (по желанию)</string>
     <string name="btn_send">Отправить</string>
 
