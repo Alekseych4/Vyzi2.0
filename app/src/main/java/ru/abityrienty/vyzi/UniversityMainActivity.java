@@ -3,7 +3,6 @@ package ru.abityrienty.vyzi;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -17,10 +16,9 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
+
 
 import ru.abityrienty.vyzi.constants.UniMainInfoConsts;
-import ru.abityrienty.vyzi.utils.Decoding_bitmaps;
 import ru.abityrienty.vyzi.constants.TablesNames;
 import ru.abityrienty.vyzi.utils.MyDBHelper;
 
@@ -34,11 +32,8 @@ public class UniversityMainActivity extends AppCompatActivity {
     TextView textView;
     String id;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    Decoding_bitmaps decoding_bitmaps;
     Button button;
     Intent intent_send;
-    Drawable drawable;
-    InputStream inputStream;
     int column_next_table;
     TextView rector, phone, location, www;
     ImageView collapseImage;
@@ -93,24 +88,7 @@ public class UniversityMainActivity extends AppCompatActivity {
         String img = cursor.getString(column_img);
         Uri uri = Uri.parse(img);
         Picasso.with(this).load(uri).fit().into(collapseImage);
-        /*try {
-            Bitmap bitmap = Picasso.with(this).load(img).fit().get();
-            Drawable drawable = new BitmapDrawable(getResources(),bitmap);
-            collapsingToolbarLayout.setBackground(drawable);
 
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }*/
-        /*Uri uri = Uri.parse(img);
-        try{
-            inputStream = getContentResolver().openInputStream(uri);
-            drawable = Drawable.createFromStream(inputStream, uri.toString());
-        }  catch (FileNotFoundException e) {
-            drawable = Drawable.createFromPath("android.resource://ru.abityrienty.vyzi/drawable/img_default.jpeg");
-        }
-
-        collapsingToolbarLayout.setBackground(drawable);*/
 
         setTitle(String.valueOf(cursor.getString(column_brief_name)));
 
@@ -137,11 +115,5 @@ public class UniversityMainActivity extends AppCompatActivity {
         cursor.close();
         myDBHelper.close();
         System.gc();
-        /*try {
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        Log.d("destr", "UniMain destr");
     }
 }

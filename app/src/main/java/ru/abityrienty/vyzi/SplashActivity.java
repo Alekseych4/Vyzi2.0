@@ -14,20 +14,19 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Log.d("SPLASH", "Before 'creating' DB");
+
         myDBHelper = new MyDBHelper(this);
         myDBHelper.create_db();
         myDBHelper.close();
-        //Log.d("SPLASH", "After 'creating' DB");
+
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //Log.d("SPLASH", "onResume()");
         if(myDBHelper.check_exist_db()) {
-            //Log.d("SPLASH", "In the if");
+
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

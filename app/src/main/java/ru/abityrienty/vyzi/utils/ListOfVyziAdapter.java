@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 public class ListOfVyziAdapter extends SimpleCursorAdapter {
 
     /**
+     * Adapter for lists
      * It's important to place column where you store images on the first place
      * of the @from array
      */
@@ -38,16 +39,7 @@ public class ListOfVyziAdapter extends SimpleCursorAdapter {
     @Override
     public void setViewImage(ImageView v, String value) {
         Picasso.with(ctx).load(c.getString(c.getColumnIndex(columns[0]))).fit().into(v);
-        //v.setImageDrawable(imageForList(getCursor()));
     }
 
-    /*private Drawable imageForList(Cursor cur){
 
-
-
-        byte [] blob = cur.getBlob(cur.getColumnIndex(columns[0]));
-        Bitmap bitmap = BitmapFactory.decodeByteArray(blob, 0, blob.length);
-        Drawable drawable = new BitmapDrawable(Resources.getSystem(), bitmap);
-        return drawable;
-    }*/
 }

@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by 800704 on 20.07.2017.
+ * Custom SQLiteOpenHelper for using database conveniently
  */
 
 public class MyDBHelper extends SQLiteOpenHelper {

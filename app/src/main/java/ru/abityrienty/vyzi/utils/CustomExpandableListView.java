@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 /**
- * Created by 800704 on 10.05.2018.
+ *
  */
 
 public class CustomExpandableListView extends ExpandableListView {

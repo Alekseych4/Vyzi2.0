@@ -20,6 +20,7 @@ import ru.abityrienty.vyzi.utils.MyDBHelper;
 
 /**
  * Created by Роберт on 01.05.2018.
+ * Fragment with list
  */
 
 public class SecondFragment extends Fragment {

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by Роберт on 01.05.2018.
+ * Welcome fragment
  */
 
 public class FirstFragment extends Fragment {

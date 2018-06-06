@@ -9,7 +9,7 @@ import android.util.Log;
 import java.io.File;
 
 /**
- * Created by 800704 on 06.04.2018.
+ * Custom SQLiteOpenHelper for using database of preferences conveniently
  */
 
 public class DbHelperPref extends SQLiteOpenHelper {

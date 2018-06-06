@@ -25,7 +25,6 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     Cursor cursor;
     ListView listView;
-    SimpleCursorAdapter simpleCursorAdapter;
     ListOfVyziAdapter listOfVyziAdapter;
 
     @Override
@@ -73,9 +72,7 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        Log.d("onStop", "LIST OF VYZI STOPPED");
         super.onStop();
-        System.gc();
     }
 
     @Override
@@ -85,7 +82,6 @@ public class List_of_Vyzi_activity extends AppCompatActivity {
         sqLiteDatabase.close();
         cursor.close();
         myDBHelper.close();
-        Log.d("Destr", "LIST OF VYZI DESTROYED");
     }
 
 

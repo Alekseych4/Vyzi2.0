@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -22,7 +21,6 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.io.InputStream;
 
 import ru.abityrienty.vyzi.constants.DirectionsTableColumns;
 import ru.abityrienty.vyzi.utils.CustomExpandableListView;
@@ -42,14 +40,11 @@ public class InstitutePage extends AppCompatActivity {
     DbHelperPref preferHelper, dbForStar;
     SQLiteDatabase databasePref, sqliteForStar;
     FloatingActionButton star;
-    InputStream inputStream;
-    Drawable drawable;
     int column_name;
     String img;
     final String DB_PATH = "/data/data/ru.abityrienty.vyzi/databases/preferences";
     File fileCheck;
     TextView director, phone, loc, email, inst_name;
-    ExpandableListView expandableListView;
     SimpleCursorTreeAdapter simpleCursorTreeAdapter;
     Cursor c;
     ImageView collapse_img;
@@ -70,7 +65,6 @@ public class InstitutePage extends AppCompatActivity {
         loc = (TextView) findViewById(R.id.location);
         email = (TextView) findViewById(R.id.email);
         inst_name = (TextView) findViewById(R.id.inst_name);
-        //expandableListView = (ExpandableListView) findViewById(R.id.inst_expandable);
         customExpandableListView = (CustomExpandableListView) findViewById(R.id.expandable_list);
         customExpandableListView .setExpanded(true);
 
@@ -84,7 +78,7 @@ public class InstitutePage extends AppCompatActivity {
 
 
 
-        //Для нормальной работы звёздочки
+        //Для нормальной работы звёздочки (добавление в избранное и удаление)
         fileCheck = new File(DB_PATH);
         if (fileCheck.exists()) {
             dbForStar = new DbHelperPref(getApplicationContext());
@@ -246,7 +240,6 @@ public class InstitutePage extends AppCompatActivity {
         myDBHelper.close();
         cursor.close();
         System.gc();
-        Log.d("DESTROY", "InstPage has destroyed");
     }
 
 

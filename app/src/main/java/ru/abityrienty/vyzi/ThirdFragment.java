@@ -17,6 +17,7 @@ import ru.abityrienty.vyzi.utils.ListOfVyziAdapter;
 
 /**
  * Created by Роберт on 01.05.2018.
+ * Preferences fragment
  */
 
 public class ThirdFragment extends Fragment {

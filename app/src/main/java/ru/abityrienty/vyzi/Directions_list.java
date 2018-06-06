@@ -22,7 +22,6 @@ public class Directions_list extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     MyDBHelper myDBHelper;
     Cursor cursor;
-    SimpleCursorAdapter simpleCursorAdapter;
     ListOfVyziAdapter listOfVyziAdapter;
     ListView listView;
     String tableName;
@@ -85,7 +84,6 @@ public class Directions_list extends AppCompatActivity {
         sqLiteDatabase.close();
         cursor.close();
         myDBHelper.close();
-        Log.d("DESTROY", "Directions_list has destroyed");
     }
 
 }
