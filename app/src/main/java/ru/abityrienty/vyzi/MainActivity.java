@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v4.content.ContextCompat;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ru.abityrienty.vyzi.utils.MyDBHelper;
+import ru.abityrienty.vyzi.utils.ViewPagerAdapter;
 
 
 public class MainActivity extends AppCompatActivity {

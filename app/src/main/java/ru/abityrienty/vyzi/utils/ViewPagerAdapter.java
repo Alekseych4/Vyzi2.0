@@ -1,4 +1,4 @@
-package ru.abityrienty.vyzi;
+package ru.abityrienty.vyzi.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
